@@ -1,10 +1,14 @@
-import Navbar from "@/components/Navbar";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await auth();
+
+  if (!session) redirect("/auth/signIn");
+
   return (
     <>
-      <Navbar />
       <main>{children}</main>
     </>
   );
