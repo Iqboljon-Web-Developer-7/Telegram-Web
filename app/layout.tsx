@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import ReduxProvider from "@/components/reduxProvider/ReduxProvider";
 
 const roboto = localFont({
   src: [
@@ -84,8 +85,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} font-roboto antialiased`}>
-        {children}
+      <body className={`${roboto.variable} font-roboto antialiased dark`}>
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );

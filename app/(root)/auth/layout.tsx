@@ -2,8 +2,13 @@ import React from "react";
 import Image from "next/image";
 
 import telegramIcon from "@/assets/auth/telegram-icon.png";
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await auth();
+
+  if (session) redirect("/");
   return (
     <div className="auth-container">
       <div className="auth-container__main">
@@ -17,7 +22,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
           />
           <div className="auth-info__content mt-8 text-center grid gap-2">
             <h4 className="text-[2rem] font-medium">Sign in to Telegram</h4>
-            <p className="text-[var(--accent-secondary)] w-[36ch]">
+            <p className="w-[36ch] text-[var(--accent-grey-600)]">
               Please fill this form in order to sign in. We hope that you will
               enjoy using Telegram.
             </p>
