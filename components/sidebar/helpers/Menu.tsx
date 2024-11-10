@@ -7,19 +7,21 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, LogOutIcon, MenuIcon } from "lucide-react";
+import { LogOut, LogOutIcon, MenuIcon, Settings } from "lucide-react";
 
 export function SidebarMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="link">
-          <MenuIcon className="dark:text-[var(--accent-grey-800)] scale-125" />
+        <Button variant="link" className="border-transparent">
+          <MenuIcon className="dark:text-[var(--grey-600)] scale-125" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent className="w-56 border-transparent ms-1">
         <DropdownMenuGroup>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Settings /> Settings
+          </DropdownMenuItem>
           <DropdownMenuItem>
             <form
               action={async () => {

@@ -4,7 +4,7 @@ import SidebarChats from "./sidebarChats/SidebarChats";
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className="p-2">
       <SidebarNav />
       <SidebarChats />
     </div>

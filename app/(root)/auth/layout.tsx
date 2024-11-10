@@ -8,7 +8,8 @@ import { redirect } from "next/navigation";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
 
-  if (session) redirect("/");
+  if (session) redirect("/m");
+
   return (
     <div className="auth-container">
       <div className="auth-container__main">
@@ -22,7 +23,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
           />
           <div className="auth-info__content mt-8 text-center grid gap-2">
             <h4 className="text-[2rem] font-medium">Sign in to Telegram</h4>
-            <p className="w-[36ch] text-[var(--accent-grey-600)]">
+            <p className="w-[36ch] text-[var(--grey-600)]">
               Please fill this form in order to sign in. We hope that you will
               enjoy using Telegram.
             </p>

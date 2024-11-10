@@ -1,7 +1,12 @@
 import React from "react";
+import SearchForm from "./SearchForm";
 
 const Search = () => {
-  return <div>Search</div>;
+  return (
+    <div className="w-full">
+      <SearchForm />
+    </div>
+  );
 };
 
 export default Search;

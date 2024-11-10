@@ -22,7 +22,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: #8774e1;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -33,11 +33,12 @@
     --black-500: #2c2c2c;
     --black-600: #212121;
     --white: #ffffff;
-    --accent-grey-600: #aaaaaa;
-    --accent-grey-650: #9e9e9e;
-    --accent-grey-675: #707579;
-    --accent-grey-700: #707579;
-    --accent-grey-800: #707070;
+    --grey-600: #aaaaaa;
+    --grey-650: #9e9e9e;
+    --grey-675: #707579;
+    --grey-700: #707579;
+    --grey-800: #707070;
+    --grey-850: #212121;
     --purple-500: #8774e1;
     --purple-550: #8774e1;
   }
@@ -60,7 +61,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --ring: #8774e1;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -80,9 +81,9 @@
   @apply max-w-[45rem] flex flex-col items-center justify-center h-full text-center gap-10;
 }
 .auth-btn {
-  @apply w-full py-5 flex-center bg-[var(--accent-grey-500)] text-white hover:!bg-[var(--purple-500)] active:opacity-80  border-2 border-slate-600 rounded-2xl;
+  @apply w-full py-5 flex-center bg-[var(--accent-grey-500)] text-[var(--white)] hover:!bg-[var(--purple-500)] hover:border-transparent active:opacity-80  border-2 border-slate-600 rounded-2xl;
 }
 
 .main-container {
-  @apply grid grid-cols-1 sm:grid-cols-[5fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[3fr_5fr];
+  @apply grid grid-cols-1 sm:grid-cols-[5fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)];
 }
