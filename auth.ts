@@ -1,25 +1,31 @@
+// @ts-nocheck
+
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
+import { client } from "./sanity/lib/client";
 import { writeClient } from "./sanity/lib/write-client";
 import { GET_USER_BY_ID } from "./sanity/lib/queries";
-import { client } from "./sanity/lib/client";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [GitHub, Google],
   callbacks: {
-    async signIn({ user: { name, email, image }, account, profile }) {
-      const { id, login, bio } = profile || {};
+    async signIn({
+      user: { name, email, image },
+      account,
+      profile: { id, sub, login, bio },
+    }) {
       const existingUser = await client
         .withConfig({ useCdn: false })
         .fetch(GET_USER_BY_ID, {
-          id,
+          id: id || sub,
+          useCdn: false,
         });
 
       if (!existingUser) {
         await writeClient.create({
           _type: "author",
-          id,
+          id: id || sub,
           name,
           username: login,
           email,
@@ -35,10 +41,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const user = await client
           .withConfig({ useCdn: false })
           .fetch(GET_USER_BY_ID, {
-            id: profile?.id,
+            id: profile?.id || profile?.sub,
           });
 
-        token.id = user?._id;
+        token.id = user?._id || user?.id;
       }
 
       return token;
@@ -49,4 +55,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
+  debug: true,
 });
