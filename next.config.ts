@@ -16,7 +16,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  /* config options here */
+  experimental: {
+    ppr: "incremental",
+    after: true,
+  },
 };
 
 export default nextConfig;
