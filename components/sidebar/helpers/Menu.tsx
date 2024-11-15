@@ -35,9 +35,8 @@ export function SidebarMenu() {
                 type="submit"
                 className="w-full flex-center !justify-start gap-2 text-left"
               >
-                <LogOutIcon size={16} />
-                <span className="max-sm:hidden">Log Out</span>
-                <LogOut className="size-6 sm:hidden text-red-500" />
+                <LogOutIcon size={18} />
+                Log Out
               </button>
             </form>
           </DropdownMenuItem>

@@ -70,6 +70,16 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 0.1rem;
+  height: 0.1rem;
+  background-color: var(--black-500);
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  background: var(--purple-500);
+}
+
 .flex-center {
   @apply flex items-center justify-center;
 }
@@ -85,5 +95,5 @@
 }
 
 .main-container {
-  @apply grid grid-cols-1 sm:grid-cols-[5fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)];
+  @apply min-h-screen grid grid-cols-1 sm:grid-cols-[5fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)] duration-300;
 }

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counter from "./slices/counter";
+import messages from "./slices/messages";
+import userInfo from "./slices/userInfo";
 
 export const store = configureStore({
   reducer: {
-    counter,
+    messages,
+    userInfo,
   },
 });
 

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Provider } from "react-redux";
-import { store } from "@/redux/intex";
+import { store } from "@/redux/index";
 
 const ReduxProvider = ({ children }: { children: React.ReactNode }) => {
   return <Provider store={store}>{children}</Provider>;
