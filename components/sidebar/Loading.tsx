@@ -2,7 +2,7 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="mt-4">
+    <div className="">
       {new Array(14).fill(14).map((_, idx) => (
         <div key={idx} className="flex items-center py-3 px-4 space-x-4">
           {/* <div className="w-12 h-12 bg-gray-300 rounded-full animate-pulse"></div> */}

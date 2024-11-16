@@ -3,10 +3,8 @@ import ChatMessage from "../chatMessage/ChatMessage";
 import { MessageType } from "@/components/sidebar/sidebarChats/SidebarChats";
 
 const ChatMessages = ({ chatMessages }: { chatMessages: MessageType[] }) => {
-  console.log("Chat Messages", chatMessages);
-
   return (
-    <div className="flex-grow overflow-y-auto flex flex-col-reverse">
+    <div className="mx-3 overflow-y-auto flex flex-grow flex-col-reverse gap-1">
       {chatMessages?.map((item: MessageType) => {
         return <ChatMessage key={item._id} message={item} />;
       })}

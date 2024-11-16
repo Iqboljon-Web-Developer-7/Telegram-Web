@@ -17,8 +17,9 @@ const ChatNav = ({ chatMessages }: { chatMessages: MessageType[] }) => {
       : // @ts-ignore
         setChatName(chatMessages[0].receiver?.name!);
   }, [chatMessages]);
+  document.title = chatName;
   return (
-    <div className="py-2 px-4 bg-[#00000011] backdrop-blur-md">
+    <div className="py-2 px-4 bg-[var(--transparent-bg)] backdrop-blur-md">
       <h1 className="font-medium">{chatName}</h1>
       <p className="text-sm text-[var(--grey-600)]">Status</p>
     </div>
