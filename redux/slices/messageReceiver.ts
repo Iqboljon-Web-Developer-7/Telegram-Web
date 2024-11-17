@@ -1,7 +1,8 @@
+import { getLocalStorage, saveLocalStorage } from "@/lib/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: "" || (localStorage.getItem("messageReceiver") as unknown),
+  value: "" || getLocalStorage("messageReceiver"),
 };
 
 const messageReceiver = createSlice({
@@ -10,7 +11,8 @@ const messageReceiver = createSlice({
   reducers: {
     setMessageReceiver: (state, action) => {
       state.value = action.payload;
-      localStorage.setItem("messageReceiver", JSON.stringify(state.value));
+
+      saveLocalStorage("messageReceiver", state.value);
     },
   },
 });

@@ -16,3 +16,12 @@ export function formatDate(date: string) {
 export function parseServerAcriontResponse<T>(response: T) {
   return JSON.parse(JSON.stringify(response));
 }
+
+export function saveLocalStorage(name: string, data: any): void {
+  if (typeof window !== "undefined")
+    localStorage && JSON.stringify(localStorage.setItem(name, data));
+}
+export function getLocalStorage(name: string): any {
+  if (typeof window !== "undefined")
+    return localStorage && JSON.parse(localStorage.getItem(name)!);
+}

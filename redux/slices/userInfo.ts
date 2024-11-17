@@ -1,7 +1,8 @@
+import { getLocalStorage, saveLocalStorage } from "@/lib/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: {} || JSON.parse(localStorage.getItem("UserInfo")!),
+  value: {} || getLocalStorage("UserInfo"),
 };
 
 const userInfo = createSlice({
@@ -10,7 +11,7 @@ const userInfo = createSlice({
   reducers: {
     setUserInfo: (state, action) => {
       state.value = action.payload;
-      localStorage.setItem("UserInfo", JSON.stringify(action.payload));
+      saveLocalStorage("UserInfo", action.payload);
     },
   },
 });
