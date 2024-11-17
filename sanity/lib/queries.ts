@@ -1,7 +1,13 @@
 import { defineQuery } from "next-sanity";
 
 export const GET_MESSAGES_QUERY = defineQuery(`
-  *[_type == "message" && receiver -> _id == $id || author -> _id == $id] | order(_createdAt desc){
+  *[
+    _type == "message" &&
+    (
+      (author -> _id == $currentUserId && receiver -> _id == $selectedUserId) || 
+      (author -> _id == $selectedUserId && receiver -> _id == $currentUserId)
+    )
+  ] | order(_createdAt desc) {
     author -> {
       _id, name, image, bio
     },
@@ -10,8 +16,8 @@ export const GET_MESSAGES_QUERY = defineQuery(`
     },
     _id,
     text,
-   _createdAt
-}
+    _createdAt
+  }
 `);
 
 export const GET_MESSAGES_NOTIFICATIONS = defineQuery(`

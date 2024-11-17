@@ -12,8 +12,6 @@ const ChatInfo = () => {
   // @ts-ignore
   const active = useSelector((state) => state.chatInfoToggle.value);
 
-  console.log(active);
-
   return (
     <div
       style={{ backgroundImage: `url(${chatInfoBg.src})` }}

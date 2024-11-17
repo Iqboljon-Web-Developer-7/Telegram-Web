@@ -2,7 +2,7 @@ import { getLocalStorage, saveLocalStorage } from "@/lib/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: "open" || getLocalStorage("chatInfoToggle"),
+  value: "closed" || getLocalStorage("chatInfoToggle"),
 };
 
 const chatInfoToggle = createSlice({
@@ -11,8 +11,6 @@ const chatInfoToggle = createSlice({
   reducers: {
     toggleChatInfo: (state) => {
       state.value == "open" ? (state.value = "closed") : (state.value = "open");
-      console.log("State:", state.value);
-
       saveLocalStorage("chatInfoToggle", state.value);
     },
   },

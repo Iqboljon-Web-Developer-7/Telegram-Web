@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Chats from "./Chats";
-import { GET_MESSAGES_QUERY } from "@/sanity/lib/queries";
+import { GET_MESSAGES_NOTIFICATIONS } from "@/sanity/lib/queries";
 import { Author, Message } from "@/sanity/types";
 import { auth } from "@/auth";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
@@ -19,7 +19,7 @@ const SidebarChats = async () => {
     id: (session as { id?: string }).id,
   };
   const { data: messages } = await sanityFetch({
-    query: GET_MESSAGES_QUERY,
+    query: GET_MESSAGES_NOTIFICATIONS,
     params,
   });
 

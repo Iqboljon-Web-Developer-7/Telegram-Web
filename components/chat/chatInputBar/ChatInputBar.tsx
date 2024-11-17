@@ -13,8 +13,6 @@ const ChatInputBar = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   // @ts-ignore
   const receiver = useSelector((state) => state.messageReceiver.value);
-  console.log("Receiver id in input:", receiver);
-
   const handleSubmit = async (
     prevState: {
       error: string;
@@ -27,13 +25,9 @@ const ChatInputBar = () => {
         message: formData.get("message"),
       };
       await formSchema.parseAsync(formValues);
-      console.log(formValues);
 
       const result = await createMessage(prevState, formData, receiver);
 
-      if (result.status === "SUCCESS") {
-        console.log("SUCCESS");
-      }
       return result;
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -59,8 +53,6 @@ const ChatInputBar = () => {
     error: "",
     status: "INITIAL",
   });
-
-  console.log(state);
 
   return (
     <form

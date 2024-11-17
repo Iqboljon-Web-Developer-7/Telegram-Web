@@ -12,24 +12,19 @@ const ChatNav = ({ chatMessages }: { chatMessages: MessageType[] }) => {
 
   // @ts-ignore
   const userInfo = useSelector((state) => state.userInfo.value);
-  const dispatch = useDispatch();
+  console.log("UserInfo", userInfo);
 
-  console.log("User info", userInfo.id);
-  console.log("Chat messages:", chatMessages);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (chatMessages[0].author?._id != userInfo.id) {
       setChatName(chatMessages[0].author?.name!);
       dispatch(setMessageReceiver(chatMessages[0].author?._id!));
-
-      console.log("Chat Receiver id:", chatMessages[0].author?._id);
     } else {
       // @ts-ignore
       setChatName(chatMessages[0].receiver?.name!);
       // @ts-ignore
       dispatch(setMessageReceiver(chatMessages[0].receiver?._id!));
-      // @ts-ignore
-      console.log("Chat receiver id:", chatMessages[0].receiver?._id);
     }
   }, [chatMessages]);
 
