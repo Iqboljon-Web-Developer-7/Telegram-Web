@@ -22,6 +22,12 @@ export function saveLocalStorage(name: string, data: any): void {
     return localStorage.setItem(name, JSON.stringify(data));
 }
 export function getLocalStorage(name: string): any {
-  if (typeof window !== "undefined")
-    return JSON.parse(localStorage.getItem(name)!);
+  if (typeof window !== "undefined") {
+    try {
+      const data = JSON.parse(localStorage.getItem(name)!);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }
