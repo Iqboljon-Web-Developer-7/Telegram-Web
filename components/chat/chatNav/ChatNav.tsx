@@ -1,8 +1,10 @@
 "use client";
 
 import { MessageType } from "@/components/sidebar/sidebarChats/SidebarChats";
+import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
+import { setMessageReceiver } from "@/redux/slices/messageReceiver";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ChatNav = ({ chatMessages }: { chatMessages: MessageType[] }) => {
   const [chatName, setChatName] = useState("");
@@ -10,16 +12,35 @@ const ChatNav = ({ chatMessages }: { chatMessages: MessageType[] }) => {
 
   // @ts-ignore
   const userInfo = useSelector((state) => state.userInfo.value);
+  const dispatch = useDispatch();
+
+  console.log("User info", userInfo.id);
+  console.log("Chat messages:", chatMessages);
 
   useEffect(() => {
-    chatMessages[0].author?._id != userInfo.id
-      ? setChatName(chatMessages[0].author?.name!)
-      : // @ts-ignore
-        setChatName(chatMessages[0].receiver?.name!);
+    if (chatMessages[0].author?._id != userInfo.id) {
+      setChatName(chatMessages[0].author?.name!);
+      dispatch(setMessageReceiver(chatMessages[0].author?._id!));
+
+      console.log("Chat Receiver id:", chatMessages[0].author?._id);
+    } else {
+      // @ts-ignore
+      setChatName(chatMessages[0].receiver?.name!);
+      // @ts-ignore
+      dispatch(setMessageReceiver(chatMessages[0].receiver?._id!));
+      // @ts-ignore
+      console.log("Chat receiver id:", chatMessages[0].receiver?._id);
+    }
   }, [chatMessages]);
-  document.title = chatName;
+
+  try {
+    document.title = chatName;
+  } catch (error) {}
   return (
-    <div className="py-2 px-4 bg-[var(--transparent-bg)] backdrop-blur-md">
+    <div
+      onClick={() => dispatch(toggleChatInfo())}
+      className="py-2 px-4 bg-[var(--transparent-bg)] backdrop-blur-md cursor-pointer"
+    >
       <h1 className="font-medium">{chatName}</h1>
       <p className="text-sm text-[var(--grey-600)]">Status</p>
     </div>

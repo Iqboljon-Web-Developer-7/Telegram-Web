@@ -10,7 +10,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div
       style={{ backgroundImage: `url(${chatBgImg.src})` }}
-      className="grid lg:grid-cols-[4fr_3fr] duration-300"
+      className="duration-300 flex transition-all"
     >
       <Chat id={id} />
       <ChatInfo />

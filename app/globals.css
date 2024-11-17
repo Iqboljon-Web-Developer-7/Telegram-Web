@@ -96,5 +96,5 @@
 }
 
 .main-container {
-  @apply min-h-screen grid grid-cols-1 sm:grid-cols-[5fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)] duration-300;
+  @apply min-h-screen grid grid-cols-1 sm:grid-cols-[4fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)] duration-300;
 }

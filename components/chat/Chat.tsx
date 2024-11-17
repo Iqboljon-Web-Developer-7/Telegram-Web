@@ -16,10 +16,12 @@ const Chat = async ({ id }: { id: string }) => {
   });
 
   return (
-    <div className="relative overflow-y-auto max-h-screen flex flex-col justify-between">
+    <div className="relative w-full overflow-y-auto max-h-screen h-screen flex flex-col justify-between">
       <ChatNav chatMessages={chatMessages} />
-      <ChatMessages chatMessages={chatMessages} />
-      <ChatInputBar />
+      <div className="max-w-[44rem] w-full mx-auto">
+        <ChatMessages chatMessages={chatMessages} />
+        <ChatInputBar />
+      </div>
     </div>
   );
 };
