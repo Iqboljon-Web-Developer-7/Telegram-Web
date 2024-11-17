@@ -19,9 +19,9 @@ export function parseServerAcriontResponse<T>(response: T) {
 
 export function saveLocalStorage(name: string, data: any): void {
   if (typeof window !== "undefined")
-    localStorage && localStorage.setItem(name, JSON.stringify(data));
+    return localStorage.setItem(name, JSON.stringify(data));
 }
 export function getLocalStorage(name: string): any {
   if (typeof window !== "undefined")
-    return localStorage && JSON.parse(localStorage.getItem(name)!);
+    return JSON.parse(localStorage.getItem(name)!);
 }
