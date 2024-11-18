@@ -3,8 +3,9 @@ import ChatNav from "./chatNav/ChatNav";
 import ChatMessages from "./chatMessages/ChatMessages";
 import ChatInputBar from "./chatInputBar/ChatInputBar";
 import { sanityFetch } from "@/sanity/lib/live";
-import { GET_MESSAGES_QUERY } from "@/sanity/lib/queries";
+import { GET_MESSAGES_QUERY, GET_USER_BY_ID } from "@/sanity/lib/queries";
 import { auth } from "@/auth";
+import { client } from "@/sanity/lib/client";
 
 const Chat = async ({ id }: { id: string }) => {
   const session = await auth();
@@ -19,18 +20,19 @@ const Chat = async ({ id }: { id: string }) => {
     params,
   });
 
+  const chattingUser = await client.fetch(GET_USER_BY_ID, { id });
+
   console.log("to:", id);
   console.log("from:", session?.id);
+  console.log("chatting User:", chattingUser);
 
   console.log(chatMessages);
 
   return (
     <div className="relative w-full overflow-y-auto max-h-screen h-screen flex flex-col justify-between">
-      <ChatNav chatMessages={chatMessages} />
-      <div className="max-w-[44rem] w-full mx-auto">
-        <ChatMessages chatMessages={chatMessages} />
-        <ChatInputBar />
-      </div>
+      <ChatNav chattingUser={chattingUser} />
+      <ChatMessages chatMessages={chatMessages} />
+      <ChatInputBar sendTo={chattingUser._id} />
     </div>
   );
 };

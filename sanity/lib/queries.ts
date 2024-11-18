@@ -35,14 +35,14 @@ export const GET_MESSAGES_NOTIFICATIONS = defineQuery(`
   }
   `);
 
+export const GET_ALL_USERS = defineQuery(`
+    *[_type == "author" && _id != $id]{
+    _id, name, image, username, email, bio
+   }
+  `);
+
 export const GET_USER_BY_ID = defineQuery(`
-  *[_type == "author" && id == $id][0]{
+  *[_type == "author" && _id == $id][0]{
     _id, id, name, username,email, image, bio
   }
-`);
-
-export const GET_ALL_USERS = defineQuery(`
-  *[_type == "author" && _id != $id]{
-  _id, name, image, username, email, bio
- }
 `);

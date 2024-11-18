@@ -9,11 +9,9 @@ import { File, Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { useSelector } from "react-redux";
 
-const ChatInputBar = () => {
+const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  // @ts-ignore
-  const receiver = useSelector((state) => state.messageReceiver.value);
-  console.log(receiver);
+  console.log("Message is sending to:", sendTo);
 
   const handleSubmit = async (
     prevState: {
@@ -28,7 +26,8 @@ const ChatInputBar = () => {
       };
       await formSchema.parseAsync(formValues);
 
-      const result = await createMessage(prevState, formData, receiver);
+      if (!sendTo) throw new Error("Receiver is not declared!");
+      const result = await createMessage(prevState, formData, sendTo);
 
       return result;
     } catch (error) {
@@ -59,20 +58,24 @@ const ChatInputBar = () => {
   return (
     <form
       action={formAction}
-      className="mt-2 mx-3 flex items-center justify-center gap-3"
+      className={`max-w-[44rem] w-full my-2 mx-auto px-3 flex items-center justify-center gap-3 ${isPending && "cursor-not-allowed"}`}
     >
       <div className="w-full rounded-full py-2 px-4 flex items-center justify-center bg-[var(--grey-850)]">
         <input
+          disabled={isPending}
           type="text"
           name="message"
           className={`w-full placeholder:text-[var(--grey-800)] bg-transparent text-base outline-none border-none`}
           placeholder="Write your comment..."
         />
-        <button type="button">
+        <button disabled={isPending} type="button">
           <File className="text-[var(--grey-600)]" />
         </button>
       </div>
-      <button className="p-2 bg-[var(--purple-500)] rounded-full hover:bg-[var(--purple-550)] duration-300">
+      <button
+        disabled={isPending}
+        className="p-2 bg-[var(--purple-500)] rounded-full hover:bg-[var(--purple-550)] duration-300"
+      >
         <Send className="translate-y-[.1rem] -translate-x-[.1rem]" />
       </button>
     </form>

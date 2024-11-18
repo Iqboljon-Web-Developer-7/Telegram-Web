@@ -2,13 +2,12 @@
 
 import { auth } from "@/auth";
 import { parseServerAcriontResponse } from "./utils";
-import slugify from "slugify";
 import { writeClient } from "@/sanity/lib/write-client";
 
 export const createMessage = async (
   state: { error: string; status: string },
   form: FormData,
-  receiver: "string"
+  sendTo: string
 ) => {
   const session = await auth();
 
@@ -20,12 +19,11 @@ export const createMessage = async (
 
   const { message } = Object.fromEntries(Array.from(form));
 
-  const slug = slugify(message.slice(0, 12) as string, {
-    lower: true,
-    strict: true,
-  });
-
   try {
+    if (!sendTo) {
+      throw new Error("Receiver is not detected!");
+      return;
+    }
     const newMessage = {
       text: message,
       author: {
@@ -35,7 +33,7 @@ export const createMessage = async (
       },
       receiver: {
         _type: "reference",
-        _ref: receiver,
+        _ref: sendTo,
       },
     };
 

@@ -4,7 +4,7 @@ import { MessageType } from "@/components/sidebar/sidebarChats/SidebarChats";
 
 const ChatMessages = ({ chatMessages }: { chatMessages: MessageType[] }) => {
   return (
-    <div className="mx-3 overflow-y-auto flex flex-grow flex-col-reverse gap-1">
+    <div className="max-w-[44rem] w-full mx-auto px-3 overflow-y-auto flex flex-grow flex-col-reverse gap-1">
       {chatMessages?.map((item: MessageType) => {
         return <ChatMessage key={item?._id} message={item} />;
       })}

@@ -78,7 +78,7 @@
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 1rem;
-  background: var(--purple-500);
+  background: var(--purple-550);
 }
 
 .flex-center {
