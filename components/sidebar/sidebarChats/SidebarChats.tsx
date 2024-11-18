@@ -15,6 +15,8 @@ export type MessageType = Omit<Message, "author"> & { author?: Author };
 const SidebarChats = async () => {
   const session = (await auth()) as SessionWithId;
 
+  console.log(session);
+
   const params = {
     currentUserId: (session as { id?: string }).id,
   };

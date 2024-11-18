@@ -896,7 +896,7 @@
       "id": {
         "type": "objectAttribute",
         "value": {
-          "type": "string"
+          "type": "number"
         },
         "optional": true
       },

@@ -29,7 +29,7 @@ const Chat = async ({ id }: { id: string }) => {
     <div className="relative w-full overflow-y-auto max-h-screen h-screen flex flex-col justify-between">
       <ChatNav chattingUser={chattingUser} />
       <ChatMessages chatMessages={chatMessages} />
-      <ChatInputBar sendTo={chattingUser._id} />
+      <ChatInputBar sendTo={chattingUser?._id} />
     </div>
   );
 };
