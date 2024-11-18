@@ -16,6 +16,8 @@ const Chats = ({
 }) => {
   const [filteredMessages, setFilteredMessages] = useState<MessageType[]>([]);
 
+  console.log("messages", messages);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,12 +30,7 @@ const Chats = ({
         if (!seen.includes(item.author!._id)) {
           seen.push(item.author!._id);
           if (authInfos?.id == item.author!._id) {
-            let result = {
-              ...item,
-              // @ts-ignore
-              author: { ...item.author, name: item.receiver!.name },
-            };
-            return result;
+            return;
           } else {
             return item;
           }
@@ -41,7 +38,9 @@ const Chats = ({
       })
       .filter(
         (item): item is MessageType =>
-          item !== undefined && item.author?._id != authInfos.id
+          (item !== undefined && item.author?._id == authInfos.id) ||
+          // @ts-ignore
+          item?.receiver?._id == authInfos.id
       );
 
     setFilteredMessages(filteredMessages);

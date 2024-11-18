@@ -9,6 +9,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
   if (!session) {
     redirect("/auth/signIn");
   }
+
   return (
     <div className="main-container overflow-x-hidden">
       <Sidebar />

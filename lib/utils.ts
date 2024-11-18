@@ -5,21 +5,15 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function formatDate(date: string) {
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
 export function parseServerAcriontResponse<T>(response: T) {
   return JSON.parse(JSON.stringify(response));
 }
 
-export function saveLocalStorage(name: string, data: any): void {
-  if (typeof window !== "undefined")
+export function saveLocalStorage(name: string, data: any): any {
+  if (typeof window !== "undefined") {
     return localStorage.setItem(name, JSON.stringify(data));
+  }
+  return null;
 }
 export function getLocalStorage(name: string): any {
   if (typeof window !== "undefined") {
@@ -30,4 +24,5 @@ export function getLocalStorage(name: string): any {
       console.log(err);
     }
   }
+  return null;
 }

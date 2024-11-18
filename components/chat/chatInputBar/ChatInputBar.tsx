@@ -13,6 +13,8 @@ const ChatInputBar = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   // @ts-ignore
   const receiver = useSelector((state) => state.messageReceiver.value);
+  console.log(receiver);
+
   const handleSubmit = async (
     prevState: {
       error: string;

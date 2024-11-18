@@ -16,8 +16,9 @@ const SidebarChats = async () => {
   const session = (await auth()) as SessionWithId;
 
   const params = {
-    id: (session as { id?: string }).id,
+    currentUserId: (session as { id?: string }).id,
   };
+
   const { data: messages } = await sanityFetch({
     query: GET_MESSAGES_NOTIFICATIONS,
     params,

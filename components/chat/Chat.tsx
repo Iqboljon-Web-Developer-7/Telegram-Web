@@ -19,7 +19,10 @@ const Chat = async ({ id }: { id: string }) => {
     params,
   });
 
-  console.log("Chat messages", chatMessages);
+  console.log("to:", id);
+  console.log("from:", session?.id);
+
+  console.log(chatMessages);
 
   return (
     <div className="relative w-full overflow-y-auto max-h-screen h-screen flex flex-col justify-between">

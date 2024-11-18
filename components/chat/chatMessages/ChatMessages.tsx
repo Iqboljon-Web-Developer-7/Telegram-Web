@@ -6,7 +6,7 @@ const ChatMessages = ({ chatMessages }: { chatMessages: MessageType[] }) => {
   return (
     <div className="mx-3 overflow-y-auto flex flex-grow flex-col-reverse gap-1">
       {chatMessages?.map((item: MessageType) => {
-        return <ChatMessage key={item._id} message={item} />;
+        return <ChatMessage key={item?._id} message={item} />;
       })}
     </div>
   );

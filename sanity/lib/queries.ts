@@ -21,17 +21,18 @@ export const GET_MESSAGES_QUERY = defineQuery(`
 `);
 
 export const GET_MESSAGES_NOTIFICATIONS = defineQuery(`
-    *[_type == "message" && receiver -> _id == $id || author -> _id == $id] | order(_createdAt desc){
-      author -> {
-        _id, name, image, bio
-      },
-      receiver -> {
-        _id, name, image, bio
-      },
-      _id,
-      text,
-      _createdAt
-}
+    *[
+    _type == "message" && author -> _id == $currentUserId || receiver -> _id == $currentUserId] | order(_createdAt desc) {
+    author -> {
+      _id, name, image, bio
+    },
+    receiver -> {
+      _id, name, image, bio
+    },
+    _id,
+    text,
+    _createdAt
+  }
   `);
 
 export const GET_USER_BY_ID = defineQuery(`

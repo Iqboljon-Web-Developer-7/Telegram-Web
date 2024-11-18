@@ -9,9 +9,9 @@ const ChatMessage = async ({ message }: { message: MessageType }) => {
 
   return (
     <div
-      className={`w-fit max-w-[85%] py-2 px-3 rounded-2xl  ${id == message.author?._id ? "bg-[var(--purple-550)] self-end rounded-br-none" : "bg-[var(--grey-850)] rounded-bl-none"}`}
+      className={`w-fit max-w-[85%] py-2 px-3 rounded-2xl  ${id == message?.author?._id ? "bg-[var(--purple-550)] self-end rounded-br-none" : "bg-[var(--grey-850)] rounded-bl-none"}`}
     >
-      {message.text}
+      {message?.text}
     </div>
   );
 };
