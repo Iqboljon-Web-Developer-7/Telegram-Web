@@ -9,6 +9,9 @@ import { client } from "@/sanity/lib/client";
 
 const Chat = async ({ id }: { id: string }) => {
   const session = await auth();
+
+  console.log("Session", session);
+
   const params = {
     // @ts-ignore
     currentUserId: session?.id,
@@ -21,12 +24,6 @@ const Chat = async ({ id }: { id: string }) => {
   });
 
   const chattingUser = await client.fetch(GET_USER_BY_ID, { id });
-
-  console.log("to:", id);
-  console.log("from:", session?.id);
-  console.log("chatting User:", chattingUser);
-
-  console.log(chatMessages);
 
   return (
     <div className="relative w-full overflow-y-auto max-h-screen h-screen flex flex-col justify-between">

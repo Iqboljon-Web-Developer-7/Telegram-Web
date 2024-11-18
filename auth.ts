@@ -5,7 +5,7 @@ import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import { client } from "./sanity/lib/client";
 import { writeClient } from "./sanity/lib/write-client";
-import { GET_USER_BY_ID } from "./sanity/lib/queries";
+import { GET_USER_BY_ID_FOR_AUTH } from "./sanity/lib/queries";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [GitHub, Google],
@@ -17,7 +17,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }) {
       const existingUser = await client
         .withConfig({ useCdn: false })
-        .fetch(GET_USER_BY_ID, {
+        .fetch(GET_USER_BY_ID_FOR_AUTH, {
           id: id || sub,
           useCdn: false,
         });
@@ -40,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (account && profile) {
         const user = await client
           .withConfig({ useCdn: false })
-          .fetch(GET_USER_BY_ID, {
+          .fetch(GET_USER_BY_ID_FOR_AUTH, {
             id: profile?.id || profile?.sub,
           });
 
@@ -50,8 +50,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      Object.assign(session, { id: token.id });
-
+      Object.assign(session, { id: token.id || token.sub });
       return session;
     },
   },

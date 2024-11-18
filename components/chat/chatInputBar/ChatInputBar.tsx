@@ -7,11 +7,9 @@ import { createMessage } from "@/lib/actions";
 
 import { File, Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
-import { useSelector } from "react-redux";
 
 const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
-  console.log("Message is sending to:", sendTo);
 
   const handleSubmit = async (
     prevState: {

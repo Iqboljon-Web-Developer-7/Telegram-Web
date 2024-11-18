@@ -22,7 +22,6 @@ export const createMessage = async (
   try {
     if (!sendTo) {
       throw new Error("Receiver is not detected!");
-      return;
     }
     const newMessage = {
       text: message,
@@ -48,8 +47,6 @@ export const createMessage = async (
       status: "SUCCESS",
     });
   } catch (error) {
-    console.log(error);
-
     return parseServerAcriontResponse({
       error: JSON.stringify(error),
       status: "ERROR",

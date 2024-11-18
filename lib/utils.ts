@@ -20,9 +20,7 @@ export function getLocalStorage(name: string): any {
     try {
       const data = JSON.parse(localStorage.getItem(name)!);
       return data;
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
   return null;
 }

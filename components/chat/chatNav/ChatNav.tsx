@@ -6,8 +6,6 @@ import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
 
 const ChatNav = ({ chattingUser }: { chattingUser: { name: string } }) => {
   const dispatch = useDispatch();
-
-  console.log("Chatting User", chattingUser);
   return (
     <div
       onClick={() => dispatch(toggleChatInfo())}

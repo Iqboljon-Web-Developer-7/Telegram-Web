@@ -8,8 +8,10 @@ import { auth } from "@/auth";
 
 const page = async () => {
   const session = await auth();
-  // @ts-ignore
-  const allUsers = await client.fetch(GET_ALL_USERS, { id: session.id });
+  const allUsers = await client
+    .withConfig({ useCdn: false })
+    // @ts-ignore
+    .fetch(GET_ALL_USERS, { id: session.id });
 
   return (
     <section

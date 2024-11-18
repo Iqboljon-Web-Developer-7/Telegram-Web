@@ -16,8 +16,6 @@ const Chats = ({
 }) => {
   const [filteredMessages, setFilteredMessages] = useState<MessageType[]>([]);
 
-  console.log("messages", messages);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
