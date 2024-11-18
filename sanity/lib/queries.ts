@@ -39,3 +39,9 @@ export const GET_USER_BY_ID = defineQuery(`
     _id, id, name, username,email, image, bio
   }
 `);
+
+export const GET_ALL_USERS = defineQuery(`
+  *[_type == "author" && _id != $id]{
+  _id, name, image, username, email, bio
+ }
+`);
