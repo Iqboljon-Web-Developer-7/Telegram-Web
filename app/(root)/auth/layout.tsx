@@ -15,6 +15,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
       <div className="auth-container__main">
         <div className="auth-info flex-center flex-col">
           <Image
+            loading="eager"
             src={telegramIcon.src}
             alt="telegram icon"
             width={160}
