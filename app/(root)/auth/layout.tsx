@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import telegramIcon from "@/assets/auth/telegram-icon.png";
+import telegramIcon from "@/assets/auth/telegram-icon.avif";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
@@ -15,12 +15,11 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
       <div className="auth-container__main">
         <div className="auth-info flex-center flex-col">
           <Image
-            loading="eager"
             src={telegramIcon.src}
             alt="telegram icon"
             width={160}
             height={160}
-            priority
+            priority={true}
           />
           <div className="auth-info__content mt-8 text-center grid gap-2">
             <h4 className="text-[2rem] font-medium">Sign in to Telegram</h4>
