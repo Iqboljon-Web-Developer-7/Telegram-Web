@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import telegramIcon from "@/assets/auth/telegram-icon.avif";
+import telegramIcon from "@/assets/auth/telegram-icon.webp";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
