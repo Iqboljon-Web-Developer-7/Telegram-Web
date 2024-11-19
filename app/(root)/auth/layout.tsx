@@ -17,8 +17,8 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
           <Image
             src={telegramIcon.src}
             alt="telegram icon"
-            width={160}
-            height={160}
+            width={150}
+            height={150}
             priority={true}
           />
           <div className="auth-info__content mt-8 text-center grid gap-2">
