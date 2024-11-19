@@ -1,10 +1,9 @@
 import React, { Suspense, lazy } from "react";
-import SidebarNav from "./sidebarNav/SidebarNav";
-import Loading from "./Loading";
-
-const SideBarChatsComponent = lazy(() => import("./sidebarChats/SidebarChats"));
-
 import ChatsImg from "@/assets/telegram-imgs/chats-bg.jpeg";
+import Loading from "./Loading";
+import { SidebarMenu } from "./helpers/Menu";
+import Search from "./helpers/Search";
+const SideBarChatsComponent = lazy(() => import("./sidebarChats/SidebarChats"));
 
 const Sidebar = () => {
   return (
@@ -13,7 +12,10 @@ const Sidebar = () => {
       className="h-screen relative bg-cover"
     >
       <div className="bg-[var(--transparent-bg)] backdrop-blur-md h-full flex flex-col overflow-y-auto">
-        <SidebarNav />
+        <nav className="flex items-center justify-between p-2 sticky inset-[0_0_auto_0] z-10">
+          <SidebarMenu />
+          <Search />
+        </nav>
         <Suspense fallback={<Loading />}>
           <SideBarChatsComponent />
         </Suspense>

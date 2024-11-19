@@ -27,7 +27,6 @@ export const createMessage = async (
       text: message,
       author: {
         _type: "reference",
-        // @ts-ignore
         _ref: session?.id,
       },
       receiver: {

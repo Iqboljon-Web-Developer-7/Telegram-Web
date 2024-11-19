@@ -1,17 +1,16 @@
-import React from "react";
-import { UsersDataTable } from "@/components/usersTable/UsersTable";
-import { client } from "@/sanity/lib/client";
+import React, { Suspense } from "react";
+import MainBg from "@/assets/telegram-imgs/main-bg.webp";
 import { GET_ALL_USERS } from "@/sanity/lib/queries";
-
-import MainBg from "@/assets/telegram-imgs/main-bg.jpg";
 import { auth } from "@/auth";
+import { sanityFetch } from "@/sanity/lib/live";
+import UsersDataTable from "@/components/usersTable/UsersTable";
 
 const page = async () => {
   const session = await auth();
-  const allUsers = await client
-    .withConfig({ useCdn: false })
-    // @ts-ignore
-    .fetch(GET_ALL_USERS, { id: session.id });
+  const { data: allUsers } = await sanityFetch({
+    query: GET_ALL_USERS,
+    params: { id: session?.id },
+  });
 
   return (
     <section
@@ -19,10 +18,14 @@ const page = async () => {
       className="bg-cover"
     >
       <div className="bg-[var(--transparent-bg)] backdrop-blur-md h-full">
-        <div className="container max-w-[40rem] mx-auto flex-center flex-col h-full">
-          <h3 className="text-3xl text-[#c7f9cc]">Users</h3>
-          <div>
-            <UsersDataTable allUsers={allUsers} />
+        <div className="container max-w-[40rem] mx-auto flex-center h-full">
+          <div className="flex-center p-5 bg-black flex-col rounded-lg">
+            <h3 className="text-2xl text-[var(--purple-500)] mb-2">Users</h3>
+            <div>
+              <Suspense fallback={"Loading..."}>
+                <UsersDataTable allUsers={allUsers} />
+              </Suspense>
+            </div>
           </div>
         </div>
       </div>

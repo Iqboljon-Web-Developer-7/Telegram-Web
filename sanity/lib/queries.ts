@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-export const GET_MESSAGES_QUERY = defineQuery(`
+export const GET_CHAT_MESSAGES_QUERY = defineQuery(`
   *[
     _type == "message" &&
     (

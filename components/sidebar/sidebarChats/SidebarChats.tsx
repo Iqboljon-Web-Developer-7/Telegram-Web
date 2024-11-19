@@ -1,30 +1,25 @@
-import React, { Suspense } from "react";
+import React from "react";
 import Chats from "./Chats";
 import { GET_MESSAGES_NOTIFICATIONS } from "@/sanity/lib/queries";
 import { Author, Message } from "@/sanity/types";
 import { auth } from "@/auth";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
-import { Session as NextAuthSession } from "next-auth";
-
-export interface SessionWithId extends NextAuthSession {
-  id: string;
-}
-
 export type MessageType = Omit<Message, "author"> & { author?: Author };
 
 const SidebarChats = async () => {
-  const session = (await auth()) as SessionWithId;
-
-  console.log(session);
+  const session = await auth();
 
   const params = {
-    currentUserId: (session as { id?: string }).id,
+    currentUserId: session.id,
   };
 
   const { data: messages } = await sanityFetch({
     query: GET_MESSAGES_NOTIFICATIONS,
     params,
   });
+
+  console.log("Messages sidebar", messages);
+  console.log(session);
 
   return (
     <div className="p-2 max-h-screen overflow-y-auto">

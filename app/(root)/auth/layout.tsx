@@ -1,13 +1,10 @@
 import React from "react";
-import Image from "next/image";
-
-import telegramIcon from "@/assets/auth/telegram-icon.webp";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
-
+  // If user already signed in head over to main page
   if (session) redirect("/m");
 
   return (
@@ -35,6 +32,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
             </p>
           </div>
         </div>
+        {/* Authorizing */}
         {children}
       </div>
     </div>

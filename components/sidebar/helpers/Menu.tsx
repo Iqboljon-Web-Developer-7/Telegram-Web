@@ -7,7 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, LogOutIcon, MenuIcon, Settings } from "lucide-react";
+import { LogOutIcon, MenuIcon, Settings } from "lucide-react";
 
 export function SidebarMenu() {
   return (
@@ -33,7 +33,7 @@ export function SidebarMenu() {
             >
               <button
                 type="submit"
-                className="w-full flex-center !justify-start gap-2 text-left"
+                className="w-full flex-center !justify-start gap-2 text-left hover:text-red-500 active:text-red-900"
               >
                 <LogOutIcon size={18} />
                 Log Out

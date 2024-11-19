@@ -1,18 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { MessageType, SessionWithId } from "./SidebarChats";
+import { MessageType } from "./SidebarChats";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { setMessages } from "@/redux/slices/messages";
 import { setUserInfo } from "@/redux/slices/userInfo";
+import { session } from "next-auth";
 
 const Chats = ({
   messages,
   authInfos,
 }: {
   messages: MessageType[];
-  authInfos: SessionWithId;
+  authInfos: session;
 }) => {
   const [filteredMessages, setFilteredMessages] = useState<MessageType[]>([]);
 

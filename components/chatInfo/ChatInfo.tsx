@@ -1,16 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import ChatInfoNav from "./chatInfoNav/ChatInfoNav";
 import AboutChat from "./aboutChat/AboutChat";
 import ChatData from "./chatData/ChatData";
 
 import chatInfoBg from "@/assets/telegram-imgs/chatInfo-bg.jpeg";
 import { useSelector } from "react-redux";
+import { RootState } from "@/redux";
 
 const ChatInfo = () => {
-  // @ts-ignore
-  const active = useSelector((state) => state.chatInfoToggle.value);
+  const active = useSelector((state: RootState) => state.chatInfoToggle.value);
 
   return (
     <div

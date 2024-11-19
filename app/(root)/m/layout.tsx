@@ -1,11 +1,10 @@
 import React from "react";
-import Sidebar from "@/components/sidebar/Sidebar";
-import { redirect } from "next/navigation";
 import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+import Sidebar from "@/components/sidebar/Sidebar";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
-
   if (!session) {
     redirect("/auth/signIn");
   }

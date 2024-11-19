@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import ReduxProvider from "@/components/reduxProvider/ReduxProvider";
+import { Suspense } from "react";
 
 const roboto = localFont({
   src: [
