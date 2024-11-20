@@ -23,7 +23,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       style={{ backgroundImage: `url(${chatBgImg.src})` }}
       className="duration-300 flex transition-all"
     >
-      <div className="relative w-full overflow-y-auto max-h-screen h-screen flex flex-col items-center justify-between">
+      <div className="main-chat-wrapper">
         <ChatNav chattingUser={chattingUser} />
         <Suspense fallback={<div className="loader"></div>}>
           <ChatMessages currentUserId={session?.id} selectedUserId={id} />

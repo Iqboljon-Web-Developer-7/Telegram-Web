@@ -9,7 +9,7 @@ const Sidebar = () => {
   return (
     <div
       style={{ backgroundImage: `url(${ChatsImg.src})` }}
-      className="h-screen relative bg-cover"
+      className="h-screen relative bg-cover border-r border-[var(--border-purple)]"
     >
       <div className="bg-[var(--transparent-bg)] backdrop-blur-md h-full flex flex-col overflow-y-auto">
         <nav className="flex items-center justify-between p-2 sticky inset-[0_0_auto_0] z-10">

@@ -15,9 +15,9 @@ const ChatInfo = () => {
   return (
     <div
       style={{ backgroundImage: `url(${chatInfoBg.src})` }}
-      className={`z-10 bg-cover flex-shrink-0 ${active == "open" ? "fixed inset-[0_0_0_auto] lg:static animate-expandWidth" : "fixed inset-[0_-100%_0_auto]"} shadow-xl shadow-[var(--purple-500)] duration-300 lg:duration-200`}
+      className={`chat-info-wrapper ${active == "open" ? "inset-[0_0_0_auto] animate-expandWidth" : "inset-[0_-100%_0_auto] animate-shrinkdWidth"}`}
     >
-      <div className="h-full bg-[var(--transparent-bg)] backdrop-blur-md p-4">
+      <div className="chat-info-inner">
         <ChatInfoNav />
         <AboutChat />
         <ChatData />

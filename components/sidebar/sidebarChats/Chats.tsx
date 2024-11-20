@@ -1,14 +1,13 @@
 // @ts-nocheck
 // prevented sanity type gen issues
-"use client";
 
-import React, { useEffect, useState } from "react";
+"use client";
+import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { session } from "next-auth";
 import { MessageType } from "./SidebarChats";
-import { useDispatch } from "react-redux";
-import { setMessages } from "@/redux/slices/messages";
-import { setUserInfo } from "@/redux/slices/userInfo";
+import { usePathname } from "next/navigation";
 
 const Chats = ({
   messages,
@@ -17,51 +16,53 @@ const Chats = ({
   messages: MessageType[];
   authInfos: session;
 }) => {
-  const [filteredMessages, setFilteredMessages] = useState<MessageType[]>([]);
-  const dispatch = useDispatch();
+  const pathname = usePathname()
+    ?.split("")
+    .filter((u) => u !== "/")
+    .join("");
 
-  useEffect(() => {
-    const uniqueChats = new Set<string>();
-    const chats = messages
-      .filter((message) => {
-        const otherUserId =
-          message.author?._id === authInfos.id
-            ? message.receiver?._id
-            : message.author?._id;
+  const uniqueChats = new Set<string>();
+  const chats = messages.filter((message) => {
+    const otherUserId =
+      message.author?._id === authInfos.id
+        ? message.receiver?._id
+        : message.author?._id;
 
-        if (uniqueChats.has(otherUserId!)) {
-          return false;
-        }
-        uniqueChats.add(otherUserId!);
-        return true;
-      })
-      .filter(
-        (message) =>
-          message.author?._id === authInfos.id ||
-          message.receiver?._id === authInfos.id
-      );
-
-    setFilteredMessages(chats);
-
-    dispatch(setMessages(messages));
-    dispatch(setUserInfo(authInfos));
-  }, [messages, authInfos, dispatch]);
+    if (uniqueChats.has(otherUserId!)) {
+      return false;
+    }
+    uniqueChats.add(otherUserId!);
+    return true;
+  });
 
   return (
     <div className="flex flex-col gap-2">
-      {filteredMessages.map((item, idx) => {
+      {chats?.map((item, idx) => {
         const otherUserId =
           item.author?._id === authInfos.id ? item.receiver : item.author;
 
         return (
           <Link key={idx} href={`/${otherUserId?._id}`}>
-            <div className="group duration-200 w-full py-3 px-4 hover:brightness-125 bg-[var(--white)] hover:bg-[var(--grey-600)] rounded-xl shadow dark:bg-[var(--grey-850)] cursor-pointer">
-              <p className="w-fit text-base line-clamp-1 font-bold text-[var(--white)] group-hover:text-[var(--purple-500)] dark:text-[var(--white)]">
-                {otherUserId?.name}
-              </p>
-              <p className="text-[.9375rem] text-[var(--grey-600)] dark:text-gray-400 line-clamp-1">
-                {item.text}
-              </p>
+            <div
+              className={`sidebar__single-message group hover:bg-[var(--purple-500)] ${otherUserId?._id == pathname ? "dark:bg-[var(--purple-500)]" : "dark:bg-[var(--grey-850)]"}`}
+            >
+              <Image
+                src={otherUserId?.image}
+                alt="user profile img"
+                className="rounded-full flex-shrink-0 w-12 h-12"
+                width={40}
+                height={40}
+              />
+              <div>
+                <p className="w-fit text-base line-clamp-1 font-bold text-[var(--white)] dark:text-[var(--white)] duration-300">
+                  {otherUserId?.name}
+                </p>
+                <p
+                  className={`text-[.9375rem] dark:text-[var(--grey-600)] group-hover:text-[var(--white)] line-clamp-1 duration-200 ${otherUserId?._id == pathname ? "dark:text-[var(--white)]" : "text-[var(--grey-650)]"}`}
+                >
+                  {item.text}
+                </p>
+              </div>
             </div>
           </Link>
         );

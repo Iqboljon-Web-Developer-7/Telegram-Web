@@ -58,9 +58,7 @@ const page = async () => {
               className="auth-btn group"
               type="submit"
             >
-              <span className="scale-110 group-hover:invert group-hover:brightness-0">
-                {item.icon}
-              </span>
+              <span className="auth-icon">{item.icon}</span>
               {item.provider.toUpperCase()}
             </Button>
           </TooltipUtil>

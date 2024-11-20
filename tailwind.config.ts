@@ -20,8 +20,8 @@ const config: Config = {
         },
       },
       animation: {
-        expandWidth: "expandWidth ease-in forwards",
-        shrinkdWidth: "shrinkdWidth ease-in forwards",
+        expandWidth: "expandWidth ease-out forwards",
+        shrinkdWidth: "shrinkdWidth ease-out forwards",
       },
       fontFamily: {
         roboto: "var(--font-roboto)",

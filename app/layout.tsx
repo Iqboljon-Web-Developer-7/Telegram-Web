@@ -94,7 +94,7 @@ export default function RootLayout({
         <ReduxProvider>
           <Suspense
             fallback={
-              <div className="flex-center gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold bg-[var(--white)] rounded-sm">
+              <div className="firstLoad-loader">
                 <p className="drop-shadow-md">
                   Website is loading. Please wait....
                 </p>
