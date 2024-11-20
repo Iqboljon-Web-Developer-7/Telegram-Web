@@ -18,9 +18,6 @@ const SidebarChats = async () => {
     params,
   });
 
-  console.log("Messages sidebar", messages);
-  console.log(session);
-
   return (
     <div className="p-2 max-h-screen overflow-y-auto">
       <Chats messages={messages} authInfos={session!} />

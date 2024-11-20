@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
   // If user already signed in head over to main page
-  if (session) redirect("/m");
+  if (session) redirect("/");
 
   return (
     <div className="auth-container">

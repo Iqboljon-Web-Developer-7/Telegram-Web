@@ -27,7 +27,7 @@ export function SidebarMenu() {
               action={async () => {
                 "use server";
 
-                await signOut({ redirectTo: "/auth/signIn" });
+                await signOut({ redirectTo: "/signIn" });
               }}
               className="flex w-full"
             >

@@ -44,7 +44,9 @@ const UsersDataTable = ({ allUsers }: { allUsers: UsersType[] }) => {
                 />
               </TableCell>
               <TableCell className="font-medium">
-                <Link href={`/m/${item._id}`}>{item.name}</Link>
+                <Link className="hover:underline" href={`/${item._id}`}>
+                  {item.name}
+                </Link>
               </TableCell>
             </TableRow>
           );
