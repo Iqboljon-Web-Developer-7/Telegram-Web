@@ -4,6 +4,8 @@ import "./globals.css";
 import ReduxProvider from "@/components/reduxProvider/ReduxProvider";
 import { Suspense } from "react";
 
+import { Analytics } from "@vercel/analytics/react";
+
 const roboto = localFont({
   src: [
     {
@@ -101,6 +103,7 @@ export default function RootLayout({
             }
           >
             {children}
+            <Analytics />
           </Suspense>
         </ReduxProvider>
       </body>

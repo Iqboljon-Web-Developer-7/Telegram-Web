@@ -30,6 +30,7 @@
     "@sanity/image-url": "^1.1.0",
     "@sanity/vision": "^3.63.0",
     "@tanstack/react-table": "^8.20.5",
+    "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.0",
     "clear": "^0.1.0",
     "clsx": "^2.1.1",
