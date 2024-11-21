@@ -2,7 +2,7 @@ import { getLocalStorage, saveLocalStorage } from "@/lib/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: {} || getLocalStorage("UserInfo"),
+  value: getLocalStorage("UserInfo") || {},
 };
 
 const userInfo = createSlice({

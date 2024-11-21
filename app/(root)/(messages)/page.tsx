@@ -15,7 +15,7 @@ const page = async () => {
   return (
     <section
       style={{ backgroundImage: `url(${MainBg.src})` }}
-      className="bg-cover"
+      className="bg-cover fixed inset-[0_-100%_0_auto] sm:static"
     >
       <div className="bg-[var(--transparent-bg)] backdrop-blur-md h-full">
         <div className="container max-w-[40rem] mx-auto flex-center h-full">

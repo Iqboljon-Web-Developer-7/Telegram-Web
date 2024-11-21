@@ -4,6 +4,9 @@ import React from "react";
 import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
+import { handleMessage } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, ArrowLeftSquare, StepBack } from "lucide-react";
 
 const ChatNav = ({
   chattingUser,
@@ -11,12 +14,31 @@ const ChatNav = ({
   chattingUser: { name: string; image: string };
 }) => {
   const dispatch = useDispatch();
+
+  const handleCLick = (e: React.MouseEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains("backBtn")) {
+      const messages = document.querySelector(".messages");
+      messages?.classList.remove("active");
+    } else {
+      console.log("Toggle");
+      dispatch(toggleChatInfo());
+    }
+  };
+
   return (
     <div
       // Open or close chat info section
-      onClick={() => dispatch(toggleChatInfo())}
-      className="w-full border-b border-[var(--border-purple)] flex items-center justify-start gap-4 py-2 px-5 bg-[var(--transparent-bg)] backdrop-blur-md cursor-pointer"
+      // @ts-ignore
+      onClick={handleCLick}
+      className="w-full border-b border-[var(--border-purple)] flex items-center justify-start gap-4 py-2 px-2 sm:px-5 bg-[var(--transparent-bg)] backdrop-blur-md cursor-pointer"
     >
+      <Button
+        className="backBtn p-1 hover:bg-slate-200 w-9 h-9 rounded-full text-4xl"
+        variant={"link"}
+      >
+        <ArrowLeft className="scale-125" size={50} />
+      </Button>
       <Image
         src={chattingUser?.image}
         alt="user profile img"

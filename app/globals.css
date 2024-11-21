@@ -145,3 +145,11 @@
 .firstLoad-loader {
   @apply flex-center gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold bg-[var(--white)] rounded-sm;
 }
+
+/* Mobile messages section */
+.messages {
+  inset: 0 -100% 0 100%;
+}
+.messages.active {
+  inset: 0;
+}

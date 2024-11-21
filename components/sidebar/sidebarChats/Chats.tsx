@@ -8,6 +8,7 @@ import Image from "next/image";
 import { session } from "next-auth";
 import { MessageType } from "./SidebarChats";
 import { usePathname } from "next/navigation";
+import { handleMessage } from "@/lib/utils";
 
 const Chats = ({
   messages,
@@ -40,9 +41,12 @@ const Chats = ({
       {chats?.map((item, idx) => {
         const otherUserId =
           item.author?._id === authInfos.id ? item.receiver : item.author;
-
         return (
-          <Link key={idx} href={`/${otherUserId?._id}`}>
+          <Link
+            onClick={() => handleMessage()}
+            key={idx}
+            href={`/${otherUserId?._id}`}
+          >
             <div
               className={`sidebar__single-message group hover:bg-[var(--purple-500)] ${otherUserId?._id == pathname ? "dark:bg-[var(--purple-500)]" : "dark:bg-[var(--grey-850)]"}`}
             >

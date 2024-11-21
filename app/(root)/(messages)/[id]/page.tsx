@@ -3,12 +3,11 @@ import ChatInfo from "@/components/chatInfo/ChatInfo";
 
 import chatBgImg from "@/assets/telegram-imgs/telegram-bg.jpeg";
 const ChatMessages = lazy(
-  () => import("@/components/chat/chatMessages/ChatMessages")
+  () => import("@/components/chat/chatMessages/ChatMessages"),
 );
-import ChatNav from "@/components/chat/chatNav/ChatNav";
-const ChatInputBar = lazy(
-  () => import("@/components/chat/chatInputBar/ChatInputBar")
-);
+const ChatNav = lazy(() => import("@/components/chat/chatNav/ChatNav"));
+// import ChatNav from "@/components/chat/chatNav/ChatNav";
+import ChatInputBar from "@/components/chat/chatInputBar/ChatInputBar";
 import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";
 import { GET_USER_BY_ID } from "@/sanity/lib/queries";
@@ -21,10 +20,12 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div
       style={{ backgroundImage: `url(${chatBgImg.src})` }}
-      className="duration-300 flex transition-all"
+      className={`messages duration-300 flex transition-all fixed sm:static`}
     >
       <div className="main-chat-wrapper">
-        <ChatNav chattingUser={chattingUser} />
+        <Suspense fallback={"Loading..."}>
+          <ChatNav chattingUser={chattingUser} />
+        </Suspense>
         <Suspense fallback={<div className="loader"></div>}>
           <ChatMessages currentUserId={session?.id} selectedUserId={id} />
         </Suspense>

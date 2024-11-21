@@ -1,15 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import messages from "./slices/messages";
 import userInfo from "./slices/userInfo";
 import chatInfoToggle from "./slices/chatInfoToggle";
 import messageReceiver from "./slices/messageReceiver";
+import messagesToggle from "./slices/messagesToggle";
 
 export const store = configureStore({
   reducer: {
-    messages,
     userInfo,
     chatInfoToggle,
     messageReceiver,
+    messagesToggle,
   },
 });
 

@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import ChatsImg from "@/assets/telegram-imgs/chats-bg.jpeg";
 import Loading from "./Loading";
 import { SidebarMenu } from "./helpers/Menu";
-import Search from "./helpers/Search";
+import SearchForm from "./helpers/Search";
 const SideBarChatsComponent = lazy(() => import("./sidebarChats/SidebarChats"));
 
 const Sidebar = () => {
@@ -14,7 +14,7 @@ const Sidebar = () => {
       <div className="bg-[var(--transparent-bg)] backdrop-blur-md h-full flex flex-col overflow-y-auto">
         <nav className="flex items-center justify-between p-2 sticky inset-[0_0_auto_0] z-10">
           <SidebarMenu />
-          <Search />
+          <SearchForm />
         </nav>
         <Suspense fallback={<Loading />}>
           <SideBarChatsComponent />
