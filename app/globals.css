@@ -72,6 +72,7 @@
   }
 }
 
+/* All scrollbars */
 ::-webkit-scrollbar {
   width: 0.1rem;
   height: 0.1rem;
@@ -82,9 +83,39 @@
   background: var(--purple-550);
 }
 
+/* Helper */
 .flex-center {
   @apply flex items-center justify-center;
 }
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, var(--purple-550) 100%, #0000) top/8px 8px
+      no-repeat,
+    conic-gradient(#0000 30%, var(--purple-550));
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: l13 1s infinite linear;
+}
+@keyframes l13 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+.firstLoad-loader {
+  @apply flex-center gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold bg-[var(--white)] rounded-sm;
+}
+
+/* Containers */
+.main-container {
+  @apply min-h-screen grid grid-cols-1 sm:grid-cols-[4fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)] duration-300;
+}
+.main-chat-wrapper {
+  @apply relative w-full overflow-y-auto max-h-screen h-[100dvh] flex flex-col items-center justify-between;
+}
+
+/* Auth start */
 .auth-container {
   @apply fixed inset-0 flex-center bg-[var(--black-600)] text-[var(--white)];
 }
@@ -106,45 +137,22 @@
 .auth-icon {
   @apply scale-110 group-hover:invert group-hover:brightness-0;
 }
+/* Auth end */
 
+/* Sidebar start */
 .sidebar__single-message {
   @apply hover:shadow-sm hover:shadow-[var(--purple-550)] flex items-center gap-3 duration-200 w-full py-3 px-3 hover:brightness-105 bg-[var(--white)] hover:bg-[var(--grey-600)] rounded-xl shadow cursor-pointer;
 }
+/* Sidebar end */
 
+/* Chatinfo start */
 .chat-info-wrapper {
   @apply z-10 bg-cover fixed lg:static flex-shrink-0 shadow-xl shadow-[var(--purple-500)] duration-300 lg:duration-200;
 }
 .chat-info-inner {
   @apply h-full bg-[var(--transparent-bg)] backdrop-blur-md p-4;
 }
-
-.main-container {
-  @apply min-h-screen grid grid-cols-1 sm:grid-cols-[4fr_3fr] md:grid-cols-[3fr_4fr] lg:grid-cols-[2fr_5fr] text-[var(--white)] duration-300;
-}
-.main-chat-wrapper {
-  @apply relative w-full overflow-y-auto max-h-screen h-screen flex flex-col items-center justify-between;
-}
-
-.loader {
-  width: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(farthest-side, var(--purple-550) 100%, #0000) top/8px 8px
-      no-repeat,
-    conic-gradient(#0000 30%, var(--purple-550));
-  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
-  animation: l13 1s infinite linear;
-}
-@keyframes l13 {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
-.firstLoad-loader {
-  @apply flex-center gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold bg-[var(--white)] rounded-sm;
-}
+/* Chatinfo end */
 
 /* Mobile messages section */
 .messages {

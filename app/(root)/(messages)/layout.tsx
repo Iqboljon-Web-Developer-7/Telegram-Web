@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
+  // If user not found
   if (!session) {
     redirect("/signIn");
   }
@@ -14,7 +15,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
       <Sidebar />
       <Suspense
         fallback={
-          <div className="w-full h-screen flex-center">
+          <div className="w-full flex-center">
             <span className="loader"></span>
           </div>
         }

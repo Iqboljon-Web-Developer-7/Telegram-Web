@@ -98,7 +98,7 @@ export default function RootLayout({
                 <p className="drop-shadow-md">
                   Website is loading. Please wait....
                 </p>
-                <div className="loader !w-8"></div>
+                <div className="loader max-w-8"></div>
               </div>
             }
           >

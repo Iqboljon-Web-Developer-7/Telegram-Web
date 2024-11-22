@@ -30,7 +30,6 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
             </p>
           </div>
         </div>
-        {/* Authorizing section */}
         {children}
       </div>
     </div>
