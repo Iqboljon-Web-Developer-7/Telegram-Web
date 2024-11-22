@@ -33,7 +33,7 @@ const ChatNav = ({
       className="w-full border-b border-[var(--border-purple)] flex items-center justify-start gap-4 py-2 px-2 sm:px-5 bg-[var(--transparent-bg)] backdrop-blur-md cursor-pointer"
     >
       <Button
-        className="backBtn p-1 hover:bg-slate-200 w-9 h-9 rounded-full text-4xl"
+        className="backBtn block sm:hidden p-1 hover:bg-[var(--black-600)] w-9 h-9 rounded-full text-4xl"
         variant={"link"}
       >
         <ArrowLeft className="scale-125" size={50} />

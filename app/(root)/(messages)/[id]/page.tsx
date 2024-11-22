@@ -6,7 +6,6 @@ const ChatMessages = lazy(
   () => import("@/components/chat/chatMessages/ChatMessages"),
 );
 const ChatNav = lazy(() => import("@/components/chat/chatNav/ChatNav"));
-// import ChatNav from "@/components/chat/chatNav/ChatNav";
 import ChatInputBar from "@/components/chat/chatInputBar/ChatInputBar";
 import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";

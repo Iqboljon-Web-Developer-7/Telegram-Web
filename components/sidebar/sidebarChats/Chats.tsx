@@ -1,14 +1,13 @@
 // @ts-nocheck
 // prevented sanity type gen issues
 
-"use client";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { session } from "next-auth";
 import { MessageType } from "./SidebarChats";
-import { usePathname } from "next/navigation";
-import { handleMessage } from "@/lib/utils";
+
+import ChatOpenBtn from "@/components/util/ChatOpenBtn";
 
 const Chats = ({
   messages,
@@ -17,11 +16,6 @@ const Chats = ({
   messages: MessageType[];
   authInfos: session;
 }) => {
-  const pathname = usePathname()
-    ?.split("")
-    .filter((u) => u !== "/")
-    .join("");
-
   const uniqueChats = new Set<string>();
   const chats = messages.filter((message) => {
     const otherUserId =
@@ -42,14 +36,11 @@ const Chats = ({
         const otherUserId =
           item.author?._id === authInfos.id ? item.receiver : item.author;
         return (
-          <Link
-            onClick={() => handleMessage()}
-            key={idx}
-            href={`/${otherUserId?._id}`}
-          >
+          <Link key={idx} href={`/${otherUserId?._id}`}>
             <div
-              className={`sidebar__single-message group hover:bg-[var(--purple-500)] ${otherUserId?._id == pathname ? "dark:bg-[var(--purple-500)]" : "dark:bg-[var(--grey-850)]"}`}
+              className={`sidebar__single-message group relative hover:bg-[var(--purple-500)] ${otherUserId?._id == "" ? "dark:bg-[var(--purple-500)]" : "dark:bg-[var(--grey-850)]"}`}
             >
+              <ChatOpenBtn id={otherUserId?._id} idx={idx} />
               <Image
                 src={otherUserId?.image}
                 alt="user profile img"
@@ -62,7 +53,7 @@ const Chats = ({
                   {otherUserId?.name}
                 </p>
                 <p
-                  className={`text-[.9375rem] dark:text-[var(--grey-600)] group-hover:text-[var(--white)] line-clamp-1 duration-200 ${otherUserId?._id == pathname ? "dark:text-[var(--white)]" : "text-[var(--grey-650)]"}`}
+                  className={`single-message__text text-[.9375rem] dark:text-[var(--grey-600)] group-hover:text-[var(--white)] line-clamp-1 duration-200 ${otherUserId?._id == "" ? "dark:text-[var(--white)]" : "text-[var(--grey-650)]"}`}
                 >
                   {item.text}
                 </p>

@@ -10,15 +10,28 @@ export function parseServerAcriontResponse<T>(response: T) {
 }
 
 export function handleMessage() {
-  const observer = new MutationObserver((mutations) => {
+  // Check immediately if the element already exists
+  const messages = document.querySelector(".messages");
+  if (messages) {
+    console.log("adding1");
+    messages.classList.add("active");
+    return; // No need to observe if it's already present
+  }
+
+  // Create and set up the MutationObserver
+  const observer = new MutationObserver(() => {
     const messages = document.querySelector(".messages");
     if (messages) {
+      console.log("adding 2");
       messages.classList.add("active");
-      observer.disconnect(); // Stop observing once done
+      // observer.disconnect(); // Stop observing once the element is found
     }
   });
 
-  observer.observe(document.body, { childList: true, subtree: true });
+  observer.observe(document.body, {
+    childList: true, // Monitor direct children
+    subtree: true, // Include all descendants
+  });
 }
 
 export function saveLocalStorage(name: string, data: any): any {
