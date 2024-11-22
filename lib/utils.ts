@@ -14,7 +14,9 @@ export function handleMessage() {
   const messages = document.querySelector(".messages");
   if (messages) {
     console.log("adding1");
-    messages.classList.add("active");
+    if (!messages.classList.contains("active")) {
+      messages.classList.add("active");
+    }
     return; // No need to observe if it's already present
   }
 
@@ -23,6 +25,7 @@ export function handleMessage() {
     const messages = document.querySelector(".messages");
     if (messages) {
       if (!messages.classList.contains("active")) {
+        console.log("adding2");
         messages.classList.add("active");
       }
       // observer.disconnect(); // Stop observing once the element is found
