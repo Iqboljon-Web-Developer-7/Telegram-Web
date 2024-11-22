@@ -22,8 +22,9 @@ export function handleMessage() {
   const observer = new MutationObserver(() => {
     const messages = document.querySelector(".messages");
     if (messages) {
-      console.log("adding 2");
-      messages.classList.add("active");
+      if (!messages.classList.contains("active")) {
+        messages.classList.add("active");
+      }
       // observer.disconnect(); // Stop observing once the element is found
     }
   });
