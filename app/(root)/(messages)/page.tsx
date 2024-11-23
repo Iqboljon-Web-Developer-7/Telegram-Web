@@ -19,11 +19,15 @@ const page = async () => {
     >
       <div className="bg-[var(--transparent-bg)] backdrop-blur-md h-full">
         <div className="container max-w-[40rem] mx-auto flex-center h-full">
-          <div className="flex-center p-5 bg-[var(--black-600)] flex-col rounded-lg">
+          <div className="min-w-52 flex-center p-5 bg-[var(--black-600)] flex-col rounded-lg">
             <h3 className="text-2xl text-[var(--purple-500)] mb-2">Users</h3>
-            <div>
+            <div className="w-full">
               <Suspense fallback={<div className="loader"></div>}>
-                <UsersDataTable allUsers={allUsers} />
+                {allUsers.length != 0 ? (
+                  <UsersDataTable allUsers={allUsers} />
+                ) : (
+                  <p className="text-center text-muted-foreground">None</p>
+                )}
               </Suspense>
             </div>
           </div>

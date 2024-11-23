@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOutIcon, MenuIcon, Settings } from "lucide-react";
+import { LogOutIcon, MenuIcon, Settings, User } from "lucide-react";
 
 export function SidebarMenu() {
   return (
@@ -21,6 +22,11 @@ export function SidebarMenu() {
         <DropdownMenuGroup>
           <DropdownMenuItem>
             <Settings /> Settings
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link href={"/"} className="flex gap-2 w-full">
+              <User size={18} /> Users
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <form

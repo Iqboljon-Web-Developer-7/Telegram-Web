@@ -41,17 +41,12 @@ export function handleMessage() {
 }
 
 export function saveLocalStorage(name: string, data: any): any {
-  if (typeof window !== "undefined") {
-    return localStorage.setItem(name, JSON.stringify(data));
-  }
-  return null;
+  return localStorage.setItem(name, JSON.stringify(data));
 }
 export function getLocalStorage(name: string): any {
-  if (typeof window !== "undefined") {
-    try {
-      const data = JSON.parse(localStorage.getItem(name)!);
-      return data;
-    } catch (err) {}
-  }
+  try {
+    const data = JSON.parse(localStorage.getItem(name)!);
+    return data;
+  } catch (err) {}
   return null;
 }

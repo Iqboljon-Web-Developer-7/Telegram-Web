@@ -89,7 +89,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} bg-[var(--grey-850)] font-roboto antialiased dark`}
+        className={`${roboto.variable} bg-[var(--grey-850)] antialiased dark`}
       >
         <ReduxProvider>
           <Suspense

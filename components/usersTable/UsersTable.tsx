@@ -33,11 +33,11 @@ const UsersDataTable = ({ allUsers }: { allUsers: UsersType[] }) => {
       <TableBody>
         {allUsers?.map((item: UsersType, idx: number) => {
           return (
-            <TableRow key={item._id}>
+            <TableRow key={item?._id}>
               <TableCell>
                 <Image
-                  src={item?.image}
-                  alt="User profile image"
+                  src={item?.image || "no_image"}
+                  alt={item?.name || "User profile image"}
                   width={30}
                   height={30}
                   className="rounded-full"
@@ -45,7 +45,7 @@ const UsersDataTable = ({ allUsers }: { allUsers: UsersType[] }) => {
               </TableCell>
               <TableCell className="font-medium">
                 <Link className="hover:underline" href={`/${item._id}`}>
-                  {item.name}
+                  {item.name || "Unknown User"}
                 </Link>
               </TableCell>
             </TableRow>
