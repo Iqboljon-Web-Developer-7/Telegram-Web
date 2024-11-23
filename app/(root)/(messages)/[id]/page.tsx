@@ -19,7 +19,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div
       style={{ backgroundImage: `url(${chatBgImg.src})` }}
-      className={`messages h-[100dvh] duration-300 flex transition-all fixed sm:static delay-150`}
+      className={`messages h-[100dvh] duration-300 flex transition-all fixed sm:static delay-200`}
     >
       <div className="main-chat-wrapper">
         <Suspense fallback={"Loading..."}>
