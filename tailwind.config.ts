@@ -18,10 +18,15 @@ const config: Config = {
           "0%": { width: "20rem" },
           "100%": { width: "0rem" },
         },
+        slideIn: {
+          "0%": { inset: "0 -100% 0 100%" },
+          "100%": { inset: "0 0 0 0" },
+        },
       },
       animation: {
         expandWidth: "expandWidth ease-out forwards",
         shrinkdWidth: "shrinkdWidth ease-out forwards",
+        slideIn: "slideIn 0.5s ease-in-out",
       },
       fontFamily: {
         roboto: "var(--font-roboto)",

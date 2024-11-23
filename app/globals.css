@@ -72,6 +72,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* All scrollbars */
 ::-webkit-scrollbar {
   width: 0.1rem;
@@ -159,5 +163,5 @@
   inset: 0 -100% 0 100%;
 }
 .messages.active {
-  inset: 0;
+  inset: 0 0 0 0;
 }

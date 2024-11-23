@@ -17,7 +17,9 @@ export function handleMessage() {
     if (!messages.classList.contains("active")) {
       messages.classList.add("active");
     }
-    return; // No need to observe if it's already present
+    console.log(messages);
+
+    return ""; // No need to observe if it's already present
   }
 
   // Create and set up the MutationObserver
