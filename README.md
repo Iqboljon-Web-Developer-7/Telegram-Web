@@ -91,3 +91,30 @@ Ensure you have the following installed:
 
 - Thanks to Next.js, Sanity, and Tailwind CSS communities for their incredible tools and documentation.
   Happy coding! 😊
+
+### What did i learn ?
+
+1. Hydranation in mind
+   Tryin to use only SSR compoents can improves Next Project's performance but we should be careful not to make hydranation fail.
+   Conditional styles make hydranation fail like className={`${item._id == user.id ? "self-end" : ""}`} it should be inside of seperate Client Component
+   These make hydranation fail
+   Date.now()
+
+   in error if Hydranation fails you may see what kind of things may caouse or causing the fail
+   for example in className changing if you see + and - lines
+   In the context of hydration errors, the + and - symbols in logs indicate differences between the server-rendered HTML and the client-rendered DOM:
+
+   +: Content or attributes present in the client-rendered DOM but not in the server-rendered HTML.
+   -: Content or attributes present in the server-rendered HTML but not in the client-rendered DOM.
+
+   if component has
+   "use client"
+   it will never couse hydranation fail (i think)
+
+   i just searched about it :) it can cause
+   
+3. Performance improvements
+   1.Don't overuse Client components if possible try to use SSR componenets as much as possible
+   2.When opening another page which has async await api call in it you should use Suspense to show loader while fetching because it's 1.shows loader 2.loads page almost immediately
+
+and much more...
