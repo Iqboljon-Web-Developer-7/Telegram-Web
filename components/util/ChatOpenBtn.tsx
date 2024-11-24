@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { handleMessage } from "@/lib/utils";
 
@@ -9,12 +10,12 @@ const ChatOpenBtn = ({ id, idx }: { id: string; idx: number }) => {
     .filter((u) => u !== "/")
     .join("");
 
-  if (id && typeof document != "undefined") {
+  useEffect(() => {
     const singleMessages = document.querySelectorAll(
-      ".sidebar__single-message",
+      ".sidebar__single-message"
     );
     const singleMessagesTxts = document.querySelectorAll(
-      ".single-message__text",
+      ".single-message__text"
     );
     if (id == pathname) {
       singleMessages[idx]?.classList.add("dark:bg-[var(--purple-500)]");
@@ -23,7 +24,7 @@ const ChatOpenBtn = ({ id, idx }: { id: string; idx: number }) => {
       singleMessages[idx]?.classList.remove("dark:bg-[var(--purple-500)]");
       singleMessagesTxts[idx]?.classList.remove("dark:text-[var(--white)]");
     }
-  }
+  }, []);
 
   return (
     <div

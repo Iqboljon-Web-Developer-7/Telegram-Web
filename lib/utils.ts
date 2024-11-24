@@ -10,24 +10,18 @@ export function parseServerAcriontResponse<T>(response: T) {
 }
 
 export function handleMessage() {
-  // Check immediately if the element already exists
   const messages = document.querySelector(".messages");
   if (messages) {
-    console.log("adding1");
     if (!messages.classList.contains("active")) {
       messages.classList.add("active");
     }
-    console.log(messages);
-
-    return ""; // No need to observe if it's already present
+    return "";
   }
 
-  // Create and set up the MutationObserver
   const observer = new MutationObserver(() => {
     const messages = document.querySelector(".messages");
     if (messages) {
       if (!messages.classList.contains("active")) {
-        console.log("adding2");
         messages.classList.add("active");
       }
       // observer.disconnect(); // Stop observing once the element is found
@@ -35,8 +29,8 @@ export function handleMessage() {
   });
 
   observer.observe(document.body, {
-    childList: true, // Monitor direct children
-    subtree: true, // Include all descendants
+    childList: true,
+    subtree: true,
   });
 }
 

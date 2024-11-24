@@ -1,5 +1,5 @@
 import { z } from "zod";
 
 export const formSchema = z.object({
-  message: z.string().min(1).max(400),
+  message: z.string().trim().min(1).max(400),
 });

@@ -1,15 +1,16 @@
 import React, { lazy, Suspense } from "react";
-import ChatInfo from "@/components/chatInfo/ChatInfo";
-
 import chatBgImg from "@/assets/telegram-imgs/telegram-bg.jpeg";
+
 const ChatMessages = lazy(
   () => import("@/components/chat/chatMessages/ChatMessages")
 );
 const ChatNav = lazy(() => import("@/components/chat/chatNav/ChatNav"));
+import ChatInfo from "@/components/chatInfo/ChatInfo";
 import ChatInputBar from "@/components/chat/chatInputBar/ChatInputBar";
 import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";
 import { GET_USER_BY_ID } from "@/sanity/lib/queries";
+import Loading from "./Loading";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
@@ -22,7 +23,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
       className={`messages h-[100dvh] duration-300 flex transition-all fixed sm:static delay-200 active`}
     >
       <div className="main-chat-wrapper">
-        <Suspense fallback={"Loading..."}>
+        <Suspense fallback={<Loading />}>
           <ChatNav chattingUser={chattingUser} />
         </Suspense>
         <Suspense fallback={<div className="loader"></div>}>
