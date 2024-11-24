@@ -1,6 +1,9 @@
+import NextAuth from "next-auth";
+
 declare module "next-auth" {
-  interface session {
+  interface Session {
     id: string;
+    isExist: boolean;
   }
   interface JWT {
     id: string;

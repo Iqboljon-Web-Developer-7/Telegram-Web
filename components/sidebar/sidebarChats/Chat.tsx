@@ -26,7 +26,7 @@ const Chat = ({
       >
         <ChatOpenBtn id={userId} idx={idx} />
         <Image
-          src={userImage}
+          src={userImage || "defaultImg"}
           alt={`${userName}'s profile picture`}
           className="rounded-full flex-shrink-0 w-12 h-12"
           width={40}

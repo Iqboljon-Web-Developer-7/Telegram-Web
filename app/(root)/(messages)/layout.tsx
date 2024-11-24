@@ -5,8 +5,10 @@ import Sidebar from "@/components/sidebar/Sidebar";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
+  console.log(session);
+
   // If user not found
-  if (!session) {
+  if (!session?.isExist) {
     redirect("/signIn");
   }
 

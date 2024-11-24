@@ -39,7 +39,7 @@ const ChatNav = ({
         <ArrowLeft className="scale-125" size={50} />
       </Button>
       <Image
-        src={chattingUser?.image}
+        src={chattingUser?.image || "defaultImg"}
         alt="user profile img"
         className="rounded-full flex-shrink-0 w-10 h-10"
         width={40}

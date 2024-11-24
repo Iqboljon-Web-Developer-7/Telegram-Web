@@ -52,7 +52,7 @@ const Chats = ({
         );
       })}
       {chats.length === 0 && (
-        <div>
+        <div className="flex-center flex-col gap-3 mt-4">
           <p className="text-center text-muted-foreground">No User</p>
           <Button>
             <Link href="/" className="w-full">
