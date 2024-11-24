@@ -15,7 +15,9 @@ import Loading from "./Loading";
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const session = await auth();
-  const chattingUser = await client.fetch(GET_USER_BY_ID, { id });
+  const chattingUser = await client
+    .withConfig({ useCdn: false })
+    .fetch(GET_USER_BY_ID, { id });
 
   return (
     <div
