@@ -27,7 +27,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <ChatNav chattingUser={chattingUser} />
         </Suspense>
         <Suspense fallback={<div className="loader"></div>}>
-          <ChatMessages currentUserId={session?.id} selectedUserId={id} />
+          <ChatMessages currentUserId={session!.id} selectedUserId={id} />
         </Suspense>
         <ChatInputBar sendTo={chattingUser?._id} />
       </div>

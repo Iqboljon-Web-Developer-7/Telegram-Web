@@ -43,7 +43,7 @@ export const GET_ALL_USERS = defineQuery(`
 
 export const GET_USER_BY_ID = defineQuery(`
   *[_type == "author" && _id == $id][0]{
-    _id, id, name, username,email, image, bio
+    _id, id, name, username,email, image, bio, status
   }
 `);
 

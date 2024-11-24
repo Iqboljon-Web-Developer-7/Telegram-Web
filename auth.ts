@@ -28,6 +28,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!existingUser) {
         await writeClient.create({
           _type: "author",
+          status: "offline",
           id,
           name,
           username: login,

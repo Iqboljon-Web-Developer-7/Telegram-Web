@@ -12,7 +12,7 @@ export const author = defineType({
       type: "string",
     }),
     defineField({
-      name: "satus",
+      name: "status",
       type: "string",
       initialValue: "Offline",
     }),

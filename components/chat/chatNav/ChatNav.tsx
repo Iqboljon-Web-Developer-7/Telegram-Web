@@ -4,14 +4,13 @@ import React from "react";
 import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
-import { handleMessage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowLeftSquare, StepBack } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const ChatNav = ({
   chattingUser,
 }: {
-  chattingUser: { name: string; image: string };
+  chattingUser: { name: string; image: string; status: string };
 }) => {
   const dispatch = useDispatch();
 
@@ -21,7 +20,6 @@ const ChatNav = ({
       const messages = document.querySelector(".messages");
       messages?.classList.remove("active");
     } else {
-      console.log("Toggle");
       dispatch(toggleChatInfo());
     }
   };
@@ -47,7 +45,9 @@ const ChatNav = ({
       />
       <div>
         <h1 className="font-medium leading-tight">{chattingUser?.name}</h1>
-        <p className="text-sm text-[var(--grey-600)] leading-tight">Status</p>
+        <p className="text-sm text-[var(--grey-600)] leading-tight">
+          {chattingUser?.status}
+        </p>
       </div>
     </div>
   );

@@ -1,5 +1,3 @@
-"use client";
-
 import { MessageType } from "@/components/sidebar/sidebarChats/SidebarChats";
 import React from "react";
 

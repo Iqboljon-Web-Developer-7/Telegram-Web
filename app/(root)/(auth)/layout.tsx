@@ -4,9 +4,6 @@ import { redirect } from "next/navigation";
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth();
-  // If user already signed in head over to main page
-  console.log(session);
-
   if (session?.isExist) redirect("/");
 
   return (
