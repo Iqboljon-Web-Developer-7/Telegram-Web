@@ -11,13 +11,19 @@ import { auth } from "@/auth";
 import { client } from "@/sanity/lib/client";
 import { GET_USER_BY_ID } from "@/sanity/lib/queries";
 import Loading from "./Loading";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const session = await auth();
-  const chattingUser = await client
-    .withConfig({ useCdn: false })
-    .fetch(GET_USER_BY_ID, { id });
+  // const chattingUser = await client
+  //   .withConfig({ useCdn: false })
+  //   .fetch(GET_USER_BY_ID, { id });
+
+  const { data: chattingUser } = await sanityFetch({
+    query: GET_USER_BY_ID,
+    params: { id },
+  });
 
   return (
     <div
@@ -32,6 +38,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <ChatMessages currentUserId={session!.id} selectedUserId={id} />
         </Suspense>
         <ChatInputBar sendTo={chattingUser?._id} />
+        <SanityLive />
       </div>
       <ChatInfo />
     </div>
