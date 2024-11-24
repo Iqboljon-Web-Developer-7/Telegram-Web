@@ -13,7 +13,7 @@ export const author = defineType({
     }),
     defineField({
       name: "satus",
-      type: "sring",
+      type: "string",
       initialValue: "Offline",
     }),
     defineField({
