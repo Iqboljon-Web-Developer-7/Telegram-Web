@@ -112,6 +112,9 @@ Ensure you have the following installed:
    it will never couse hydranation fail (i think)
 
    i just searched about it :) it can cause
+
+   If u change server rendered for example div's class from Client rendered function it also causes hydranation fail
+   shortly don't change server rendered elements from client rendered component
    
 3. Performance improvements
    1.Don't overuse Client components if possible try to use SSR componenets as much as possible
