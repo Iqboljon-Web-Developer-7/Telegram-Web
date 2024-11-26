@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { handleMessage } from "@/lib/utils";
 
-const ChatOpenBtn = ({ id, idx }: { id: string; idx: number }) => {
+const ChatStatus = ({ id, idx }: { id: string; idx: number }) => {
   const pathname = usePathname()
     ?.split("")
     .filter((u) => u !== "/")
@@ -24,7 +24,7 @@ const ChatOpenBtn = ({ id, idx }: { id: string; idx: number }) => {
       singleMessages[idx]?.classList.remove("dark:bg-[var(--purple-500)]");
       singleMessagesTxts[idx]?.classList.remove("dark:text-[var(--white)]");
     }
-  }, []);
+  }, [pathname]);
 
   return (
     <div
@@ -34,4 +34,4 @@ const ChatOpenBtn = ({ id, idx }: { id: string; idx: number }) => {
   );
 };
 
-export default ChatOpenBtn;
+export default ChatStatus;

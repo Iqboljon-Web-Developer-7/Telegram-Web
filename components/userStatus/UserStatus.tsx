@@ -1,15 +1,16 @@
 "use client";
 
+import { toDoubleNum } from "@/lib/utils";
 import React, { useEffect } from "react";
 
 const UserStatus = ({ userId }: { userId: string }) => {
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      const hours = new Date().getHours();
+      const minutes = new Date().getMinutes();
+      if (userId)
+        updateStatus(`Last seen ${toDoubleNum(hours)}:${toDoubleNum(minutes)}`);
       event.preventDefault();
-      event.returnValue = "";
-      console.log("User is attempting to leave the page.");
-      if (userId) updateStatus("Offline");
-      return undefined;
     };
 
     const updateStatus = async (status: string) => {
@@ -20,7 +21,7 @@ const UserStatus = ({ userId }: { userId: string }) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ id: userId }),
+            body: JSON.stringify({ id: userId, status }),
           });
           if (response.ok) {
             console.log("Status updated successfully");
@@ -34,13 +35,19 @@ const UserStatus = ({ userId }: { userId: string }) => {
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("unload", handleBeforeUnload);
+    document.addEventListener("visibilitychange", (e) => {
+      if (document.visibilityState == "hidden") {
+        handleBeforeUnload(e);
+      }
+    });
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [userId]);
 
-  return <div></div>;
+  return <></>;
 };
 
 export default UserStatus;

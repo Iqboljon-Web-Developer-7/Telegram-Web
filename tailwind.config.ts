@@ -32,6 +32,12 @@ const config: Config = {
         roboto: "var(--font-roboto)",
       },
       colors: {
+        black500: "var(--black-500)",
+        borderPurple: "var(--border-purple)",
+        purple500: "var(--purple-500)",
+        transparentEffect: "var(--transparent-bg)",
+
+        // shadcn
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

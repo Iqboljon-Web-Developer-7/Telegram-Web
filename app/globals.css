@@ -92,13 +92,15 @@ html {
   @apply flex items-center justify-center;
 }
 .loader {
-  width: 50px;
+  width: 3rem;
   aspect-ratio: 1;
   border-radius: 50%;
   background:
     radial-gradient(farthest-side, var(--purple-550) 100%, #0000) top/8px 8px
       no-repeat,
     conic-gradient(#0000 30%, var(--purple-550));
+  mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
+  animation: l13 1s infinite linear;
   -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 8px), #000 0);
   animation: l13 1s infinite linear;
 }
@@ -107,6 +109,7 @@ html {
     transform: rotate(1turn);
   }
 }
+
 .firstLoad-loader {
   @apply flex-center gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold bg-[var(--white)] rounded-sm;
 }
@@ -149,6 +152,14 @@ html {
 }
 /* Sidebar end */
 
+/* Messages section */
+.messages {
+  inset: 0 -100% 0 100%;
+}
+.messages.active {
+  inset: 0 0 0 0;
+}
+
 /* Chatinfo start */
 .chat-info-wrapper {
   @apply z-10 bg-cover fixed lg:static flex-shrink-0 shadow-xl shadow-[var(--purple-500)] duration-300 lg:duration-200;
@@ -157,11 +168,3 @@ html {
   @apply h-full bg-[var(--transparent-bg)] backdrop-blur-md p-4;
 }
 /* Chatinfo end */
-
-/* Mobile messages section */
-.messages {
-  inset: 0 -100% 0 100%;
-}
-.messages.active {
-  inset: 0 0 0 0;
-}

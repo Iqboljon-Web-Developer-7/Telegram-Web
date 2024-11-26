@@ -9,6 +9,9 @@ export function parseServerAcriontResponse<T>(response: T) {
   return JSON.parse(JSON.stringify(response));
 }
 
+export function toDoubleNum(num: number) {
+  return num < 10 ? `0${num}` : num;
+}
 export function handleMessage() {
   const messages = document.querySelector(".messages");
   if (messages) {

@@ -8,7 +8,6 @@ const ChatNav = lazy(() => import("@/components/chat/chatNav/ChatNav"));
 import ChatInfo from "@/components/chatInfo/ChatInfo";
 import ChatInputBar from "@/components/chat/chatInputBar/ChatInputBar";
 import { auth } from "@/auth";
-import { client } from "@/sanity/lib/client";
 import { GET_USER_BY_ID } from "@/sanity/lib/queries";
 import Loading from "./Loading";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
@@ -16,10 +15,6 @@ import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   const session = await auth();
-  // const chattingUser = await client
-  //   .withConfig({ useCdn: false })
-  //   .fetch(GET_USER_BY_ID, { id });
-
   const { data: chattingUser } = await sanityFetch({
     query: GET_USER_BY_ID,
     params: { id },
@@ -38,9 +33,9 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <ChatMessages currentUserId={session!.id} selectedUserId={id} />
         </Suspense>
         <ChatInputBar sendTo={chattingUser?._id} />
-        <SanityLive />
       </div>
       <ChatInfo />
+      <SanityLive />
     </div>
   );
 };

@@ -8,6 +8,7 @@ export const GET_CHAT_MESSAGES_QUERY = defineQuery(`
       (author -> _id == $selectedUserId && receiver -> _id == $currentUserId)
     )
   ] | order(_createdAt desc) {
+   _createdAt,
     author -> {
       _id, name, image, bio
     },
@@ -22,7 +23,7 @@ export const GET_CHAT_MESSAGES_QUERY = defineQuery(`
 
 export const GET_MESSAGES_NOTIFICATIONS = defineQuery(`
     *[
-    _type == "message" && author -> _id == $currentUserId || receiver -> _id == $currentUserId] | order(_createdAt desc) {
+    _type == "message" && author -> _id == $id || receiver -> _id == $id] | order(_createdAt desc) {
     author -> {
       _id, name, image, bio
     },

@@ -1,21 +1,17 @@
 import React from "react";
 import Chats from "./Chats";
-import { GET_MESSAGES_NOTIFICATIONS } from "@/sanity/lib/queries";
-import { Author, Message } from "@/sanity/types";
 import { auth } from "@/auth";
+import { Author, Message } from "@/sanity/types";
 import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { GET_MESSAGES_NOTIFICATIONS } from "@/sanity/lib/queries";
 export type MessageType = Omit<Message, "author"> & { author?: Author };
 
 const SidebarChats = async () => {
   const session = await auth();
 
-  const params = {
-    currentUserId: session.id,
-  };
-
   const { data: messages } = await sanityFetch({
     query: GET_MESSAGES_NOTIFICATIONS,
-    params,
+    params: { id: session?.id },
   });
 
   return (

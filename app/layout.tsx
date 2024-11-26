@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+import ReduxProvider from "@/components/reduxProvider/ReduxProvider";
+import { Analytics } from "@vercel/analytics/react";
+import { Suspense } from "react";
 import localFont from "next/font/local";
 import "./globals.css";
-import ReduxProvider from "@/components/reduxProvider/ReduxProvider";
-import { Suspense } from "react";
-
-import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
+import Loading from "./Loading";
 
 const roboto = localFont({
   src: [
@@ -87,21 +87,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="uz">
       <body
         className={`${roboto.variable} bg-[var(--grey-850)] antialiased dark`}
       >
         <ReduxProvider>
-          <Suspense
-            fallback={
-              <div className="firstLoad-loader">
-                <p className="drop-shadow-md">
-                  Website is loading. Please wait....
-                </p>
-                <div className="loader max-w-8"></div>
-              </div>
-            }
-          >
+          <Suspense fallback={<Loading />}>
             {children}
             <Analytics />
           </Suspense>

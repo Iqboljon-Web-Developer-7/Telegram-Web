@@ -1,4 +1,4 @@
-"use client"; // Error boundaries must be Client Components
+"use client";
 
 export default function GlobalError({
   error,
@@ -8,7 +8,6 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    // global-error must include html and body tags
     <html>
       <body className="flex-center flex-col bg-slate-950 text-slate-200 p-8">
         <h2 className="text-2xl">Something went wrong!</h2>
