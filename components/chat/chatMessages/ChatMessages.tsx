@@ -35,7 +35,6 @@ const ChatMessages = async ({
         );
       })}
       <SentMessage chatMessages={chatMessages} />
-      <SanityLive />
     </div>
   );
 };

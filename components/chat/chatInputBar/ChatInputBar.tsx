@@ -6,6 +6,7 @@ import { createMessage } from "@/lib/actions";
 import { formSchema } from "@/lib/validation";
 
 import { File, Send } from "lucide-react";
+import { toDoubleNum } from "@/lib/utils";
 
 const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -18,20 +19,42 @@ const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
     formData: FormData
   ) => {
     try {
+      const now = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Karachi", // GMT+5
+        hour12: false,
+        hour: "2-digit",
+        minute: "2-digit",
+      });
       const formValues = {
         message: formData.get("message"),
+        _createdAt: now,
       };
       await formSchema.parseAsync(formValues);
 
       const chatMessages = document.querySelector(".chatMessages");
       const div = document.createElement("div");
-      div.textContent = formValues.message as string;
+      const span = document.createElement("span");
+
+      const hours = new Date().getHours();
+      const minutes = new Date().getMinutes();
+      const hourMinute = `${toDoubleNum(hours)}:${toDoubleNum(minutes)}`;
+
       div.className =
-        "chatMessage w-fit max-w-[85%] py-2 px-3 rounded-2xl  bg-[var(--purple-550)] self-end rounded-br-none";
+        "chatMessage relative w-fit max-w-[85%] py-1 pl-2 pr-2 rounded-xl flex items-end gap-1  bg-[var(--purple-550)] self-end rounded-br-none rounded-l-2xl";
+      span.className =
+        "text-xs ml-1 text-[var(--grey-600)] text-start float-right leading-[2] relative -bottom-1";
+
+      div.innerHTML = formValues.message as string;
+      span.textContent = now;
+
+      div.append(span);
+
       chatMessages?.prepend(div);
 
       if (!sendTo) throw new Error("Receiver is not declared!");
       const result = await createMessage(prevState, formData, sendTo);
+      console.log("result", result);
+
       return result;
     } catch (error) {
       if (error instanceof z.ZodError) {

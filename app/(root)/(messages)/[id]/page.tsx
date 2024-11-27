@@ -35,7 +35,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <ChatInputBar sendTo={chattingUser?._id} />
       </div>
       <ChatInfo />
-      <SanityLive />
     </div>
   );
 };

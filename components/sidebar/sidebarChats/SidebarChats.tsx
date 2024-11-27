@@ -17,7 +17,6 @@ const SidebarChats = async () => {
   return (
     <div className="p-2 max-h-screen overflow-y-auto">
       <Chats messages={messages} authInfos={session!} />
-      <SanityLive />
     </div>
   );
 };

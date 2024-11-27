@@ -12,9 +12,11 @@ const ChatMessage = ({
   const time = createdAt.split("T")[1].split(":");
   const hourMinute = `${time[0]}:${time[1]}`;
 
+  console.log("Created At", item._createdAt);
+
   return (
     <div
-      className={`relative w-fit max-w-[85%] py-1 pl-2 pr-2 rounded-xl flex items-end gap-1  ${currentUserId == item?.author?._id ? "bg-[var(--purple-550)] self-end rounded-br-none rounded-l-3xl " : "bg-[var(--grey-850)] rounded-r-md rounded-bl-none"}`}
+      className={`relative w-fit max-w-[85%] py-1 pl-2 pr-2 rounded-xl flex items-end gap-1  ${currentUserId == item?.author?._id ? "bg-[var(--purple-550)] self-end rounded-br-none rounded-l-2xl" : "bg-[var(--grey-850)] rounded-r-xl rounded-bl-none"}`}
     >
       <span className="break-all ">
         {item?.text}

@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import type { Metadata } from "next";
 import Loading from "./Loading";
+import { SanityLive } from "@/sanity/lib/live";
 
 const roboto = localFont({
   src: [
@@ -94,6 +95,7 @@ export default function RootLayout({
         <ReduxProvider>
           <Suspense fallback={<Loading />}>
             {children}
+            <SanityLive />
             <Analytics />
           </Suspense>
         </ReduxProvider>
