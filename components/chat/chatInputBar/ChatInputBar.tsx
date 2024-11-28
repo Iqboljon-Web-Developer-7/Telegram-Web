@@ -4,11 +4,13 @@ import React, { useActionState, useEffect, useState } from "react";
 import { z } from "zod";
 import { createMessage } from "@/lib/actions";
 import { formSchema } from "@/lib/validation";
+import NProgress from "nprogress";
 
 import { File, Send } from "lucide-react";
-import { toDoubleNum } from "@/lib/utils";
 
 const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
+  useEffect(() => {
+  }, []);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (
@@ -34,18 +36,18 @@ const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
       const chatMessages = document.querySelector(".chatMessages");
       const div = document.createElement("div");
       const span = document.createElement("span");
-
-      const hours = new Date().getHours();
-      const minutes = new Date().getMinutes();
-      const hourMinute = `${toDoubleNum(hours)}:${toDoubleNum(minutes)}`;
+      const span2 = document.createElement("span");
 
       div.className =
         "chatMessage relative w-fit max-w-[85%] py-1 pl-2 pr-2 rounded-xl flex items-end gap-1  bg-[var(--purple-550)] self-end rounded-br-none rounded-l-2xl";
-      span.className =
-        "text-xs ml-1 text-[var(--grey-600)] text-start float-right leading-[2] relative -bottom-1";
+      span.className = "break-all";
+      span2.className =
+        "break-normal text-xs ml-1 text-[var(--grey-600)] text-start float-right leading-[2] relative -bottom-1";
 
-      div.innerHTML = formValues.message as string;
-      span.textContent = now;
+      span.innerHTML = formValues.message as string;
+      span2.textContent = now;
+
+      span.append(span2);
 
       div.append(span);
 

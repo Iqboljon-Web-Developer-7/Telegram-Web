@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useEffect } from "react";
+import nProgress from "nprogress";
 
 // Form validation guide
 const formSchema = z.object({
@@ -22,6 +24,10 @@ const SearchForm = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
+
+  useEffect(() => {
+    nProgress.done();
+  }, []);
 
   return (
     <Form {...form}>

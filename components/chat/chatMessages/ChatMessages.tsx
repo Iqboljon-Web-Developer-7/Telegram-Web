@@ -21,8 +21,6 @@ const ChatMessages = async ({
     },
   });
 
-  console.log("chat messages", chatMessages);
-
   return (
     <div className="chatMessages max-w-[44rem] w-full mx-auto px-3 overflow-y-auto flex flex-grow flex-col-reverse gap-1">
       {chatMessages?.map((item: MessageType) => {

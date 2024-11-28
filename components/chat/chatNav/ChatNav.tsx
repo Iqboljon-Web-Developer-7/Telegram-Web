@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
+import nProgress from "nprogress";
 
 const ChatNav = ({
   chattingUser,
@@ -13,6 +14,10 @@ const ChatNav = ({
   chattingUser: { name: string; image: string; status: string };
 }) => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    nProgress.done();
+  }, []);
 
   const handleCLick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;

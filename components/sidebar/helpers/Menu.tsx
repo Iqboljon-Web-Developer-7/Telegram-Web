@@ -39,7 +39,7 @@ export function SidebarMenu() {
             >
               <button
                 type="submit"
-                className="w-full flex-center !justify-start gap-2 text-left hover:text-red-500 active:text-red-900"
+                className="w-full flex-center !justify-start gap-2 text-left hover:text-[--red-500] active:text-[var(--red-900)]"
               >
                 <LogOutIcon size={18} />
                 Log Out

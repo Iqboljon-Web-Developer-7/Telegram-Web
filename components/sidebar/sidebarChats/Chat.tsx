@@ -25,7 +25,7 @@ const Chat: FC<sidebarChatPropTypes> = ({ otherUser, text, idx }) => {
             {name}
           </p>
           <p
-            className={`single-message__text text-[.9375rem] dark:text-[var(--grey-600)] group-hover:text-[var(--white)] line-clamp-1 duration-200`}
+            className={`single-message__text w-full text-[.9375rem] dark:text-[var(--grey-600)] group-hover:text-[var(--white)] line-clamp-1 duration-200`}
           >
             {text || "No message"}
           </p>

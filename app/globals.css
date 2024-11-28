@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "nprogress/nprogress.css";
 
 @layer base {
   :root {
@@ -67,6 +68,8 @@
     --grey-850: #212121;
     --purple-500: #8774e1;
     --purple-550: #775fec;
+    --red-500: #ef4444;
+    --red-900: #7f1d1d;
     --border-purple: #341caccc;
     --transparent-bg: #22222211;
   }
@@ -91,6 +94,7 @@ html {
 .flex-center {
   @apply flex items-center justify-center;
 }
+
 .loader {
   width: 3rem;
   aspect-ratio: 1;
@@ -109,9 +113,58 @@ html {
     transform: rotate(1turn);
   }
 }
+/* HTML: <div class="loader"></div> */
+.loader3d {
+  --s: 20px;
+
+  --_d: calc(0.353 * var(--s));
+  width: calc(var(--s) + var(--_d));
+  aspect-ratio: 1;
+  display: grid;
+}
+.loader3d:before,
+.loader3d:after {
+  content: "";
+  grid-area: 1/1;
+  clip-path: polygon(
+    var(--_d) 0,
+    100% 0,
+    100% calc(100% - var(--_d)),
+    calc(100% - var(--_d)) 100%,
+    0 100%,
+    0 var(--_d)
+  );
+  background: conic-gradient(
+    from -90deg at calc(100% - var(--_d)) var(--_d),
+    #fff 135deg,
+    #666 0 270deg,
+    #aaa 0
+  );
+  animation: l6 2s infinite;
+}
+.loader3d:after {
+  animation-delay: -1s;
+}
+@keyframes l6 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30px, 0);
+  }
+  50% {
+    transform: translate(30px, 30px);
+  }
+  75% {
+    transform: translate(0, 30px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
 
 .firstLoad-loader {
-  @apply flex-center gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold bg-[var(--white)] rounded-sm;
+  @apply flex-center fixed inset-0 gap-3 m-8 p-3 text-[var(--purple-500)] font-semibold rounded-sm;
 }
 
 /* Containers */
