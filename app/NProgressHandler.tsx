@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation"; // Updated imports
+import { usePathname, useSearchParams } from "next/navigation"; // Updated imports
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
-const NProgressHandler = () => {
+const NProgressHandler = async () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const searchParams = await useSearchParams();
 
   useEffect(() => {
     NProgress.configure({ showSpinner: false });

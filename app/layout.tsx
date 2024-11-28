@@ -6,7 +6,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Loading from "./Loading";
 import { SanityLive } from "@/sanity/lib/live";
-import NProgressHandler from "./NProgressHandler";
 
 const roboto = localFont({
   src: [
@@ -99,7 +98,6 @@ export default function RootLayout({
             <Analytics />
           </Suspense>
         </ReduxProvider>
-        <NProgressHandler />
         <SanityLive />
       </body>
     </html>
