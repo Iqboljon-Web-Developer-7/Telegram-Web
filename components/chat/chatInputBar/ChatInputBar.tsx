@@ -1,16 +1,14 @@
 "use client";
 
 import React, { useActionState, useEffect, useState } from "react";
-import { z } from "zod";
 import { createMessage } from "@/lib/actions";
 import { formSchema } from "@/lib/validation";
-import NProgress from "nprogress";
+import { z } from "zod";
 
 import { File, Send } from "lucide-react";
 
 const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleSubmit = async (
@@ -55,7 +53,6 @@ const ChatInputBar = ({ sendTo }: { sendTo: string }) => {
 
       if (!sendTo) throw new Error("Receiver is not declared!");
       const result = await createMessage(prevState, formData, sendTo);
-      console.log("result", result);
 
       return result;
     } catch (error) {

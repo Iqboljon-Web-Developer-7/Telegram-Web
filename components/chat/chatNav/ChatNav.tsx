@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
-import { useDispatch } from "react-redux";
+import React from "react";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 import { Button } from "@/components/ui/button";
+import { toggleChatInfo } from "@/redux/slices/chatInfoToggle";
 import { ArrowLeft } from "lucide-react";
-import nProgress from "nprogress";
 
 const ChatNav = ({
   chattingUser,
@@ -14,10 +13,6 @@ const ChatNav = ({
   chattingUser: { name: string; image: string; status: string };
 }) => {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    nProgress.done();
-  }, []);
 
   const handleCLick = (e: React.MouseEvent<HTMLElement>) => {
     const target = e.target as HTMLElement;
@@ -31,7 +26,6 @@ const ChatNav = ({
 
   return (
     <div
-      // Open or close chat info section
       onClick={handleCLick}
       className="w-full border-b border-[var(--border-purple)] flex items-center justify-start gap-4 py-2 px-2 sm:px-5 bg-[var(--transparent-bg)] backdrop-blur-md cursor-pointer"
     >

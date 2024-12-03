@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogOutIcon, MenuIcon, Settings, User } from "lucide-react";
+import ShowAllUsers from "@/components/showAllUsers/ShowAllUsers";
 
 export function SidebarMenu() {
   return (
@@ -24,9 +25,11 @@ export function SidebarMenu() {
             <Settings /> Settings
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href={"/"} className="flex gap-2 w-full">
-              <User size={18} /> Users
-            </Link>
+            <ShowAllUsers>
+              <Link href={"/"} className="flex gap-2 w-full">
+                <User size={18} /> Users
+              </Link>
+            </ShowAllUsers>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <form

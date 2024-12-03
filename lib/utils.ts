@@ -27,7 +27,7 @@ export function handleMessage() {
       if (!messages.classList.contains("active")) {
         messages.classList.add("active");
       }
-      // observer.disconnect(); // Stop observing once the element is found
+      observer.disconnect(); // Stop observing once the element is found
     }
   });
 
