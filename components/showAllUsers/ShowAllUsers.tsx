@@ -12,7 +12,11 @@ const ShowAllUsers = ({ children }: { children: React.ReactNode }) => {
       : AllUsers?.classList.remove("active");
   }, [isActive]);
 
-  return <button onClick={() => setIsActive((p) => !p)}>{children}</button>;
+  return (
+    <button onClick={() => setIsActive((p) => !p)} className="flex gap-2">
+      {children}
+    </button>
+  );
 };
 
 export default ShowAllUsers;

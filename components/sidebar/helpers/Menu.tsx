@@ -25,7 +25,7 @@ export function SidebarMenu() {
             <Settings /> Settings
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href={"/"} className="flex gap-2 w-full">
+            <Link href={"/"} className="w-full">
               <ShowAllUsers>
                 <User size={18} /> Users
               </ShowAllUsers>
