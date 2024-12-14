@@ -119,5 +119,4 @@ Ensure you have the following installed:
 2. Performance improvements
    1.Don't overuse Client components if possible try to use SSR componenets as much as possible
    2.When opening another page which has async await api call in it you should use Suspense to show loader while fetching because it's 1.shows loader 2.loads page almost immediately
-
-and much more...
+3. Problem Solving - When i tried to use sanity client function to change data it gave error the reason was i was using it in client component hot it solved and worked 1.i created api using Next's power and when event happens in client i just called that api. Inside of that api file there were all the code that i needed to be executed!:)
