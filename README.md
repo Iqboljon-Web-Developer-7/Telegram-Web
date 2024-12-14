@@ -116,7 +116,7 @@ Ensure you have the following installed:
    If u change server rendered for example div's class from Client rendered function it also causes hydranation fail
    shortly don't change server rendered elements from client rendered component
    
-3. Performance improvements
+2. Performance improvements
    1.Don't overuse Client components if possible try to use SSR componenets as much as possible
    2.When opening another page which has async await api call in it you should use Suspense to show loader while fetching because it's 1.shows loader 2.loads page almost immediately
 
