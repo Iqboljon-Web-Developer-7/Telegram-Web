@@ -11,7 +11,8 @@ const layout: FC<messagesLayoutPropTypes> = async ({ children }) => {
   const session = await auth();
 
   // If user not found
-  if (!session?.isExist) redirect("/signIn");
+  // i commented that to check my website on google pageInsights
+  // if (!session?.isExist) redirect("/signIn");
 
   // Whenever user opens the website User's status is set to Online
   after(
