@@ -1,29 +1,40 @@
-import { useEffect, useState } from "react";
-import { sanityClient } from "@/sanity/lib/client";
+import React from "react";
+import ChatMessage from "../chatMessage/ChatMessage";
+import { MessageType } from "@/components/sidebar/sidebarChats/SidebarChats";
+import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { GET_CHAT_MESSAGES_QUERY } from "@/sanity/lib/queries";
+import SentMessage from "@/components/util/SentMessage";
 
-const ChatMessages = ({ currentUserId, selectedUserId }) => {
-  const [messages, setMessages] = useState([]);
-
-  useEffect(() => {
-    // Initial fetch
-    sanityClient.fetch(GET_CHAT_MESSAGES_QUERY, { currentUserId, selectedUserId })
-      .then(setMessages);
-
-    // Real-time subscription
-    const subscription = sanityClient
-      .listen(GET_CHAT_MESSAGES_QUERY, { currentUserId, selectedUserId })
-      .subscribe((update) => {
-        setMessages((prev) => /* update logic here */);
-      });
-
-    return () => subscription.unsubscribe();
-  }, [currentUserId, selectedUserId]);
+const ChatMessages = async ({
+  currentUserId,
+  selectedUserId,
+}: {
+  currentUserId: string;
+  selectedUserId: string;
+}) => {
+  // For filtering messages
+  const { data: chatMessages } = await sanityFetch({
+    query: GET_CHAT_MESSAGES_QUERY,
+    params: {
+      currentUserId,
+      selectedUserId,
+    },
+  });
 
   return (
-    <div className="chatMessages">
-      {messages.map((item) => (
-        <ChatMessage key={item._id} currentUserId={currentUserId} item={item} />
-      ))}
+    <div className="chatMessages max-w-[44rem] w-full mx-auto px-3 overflow-y-auto flex flex-grow flex-col-reverse gap-1">
+      {chatMessages?.map((item: MessageType) => {
+        return (
+          <ChatMessage
+            key={item._id}
+            currentUserId={currentUserId}
+            item={item}
+          />
+        );
+      })}
+      <SentMessage chatMessages={chatMessages} />
     </div>
   );
 };
+
+export default ChatMessages;
