@@ -10,7 +10,7 @@ import ChatInputBar from "@/components/chat/chatInputBar/ChatInputBar";
 import { auth } from "@/auth";
 import { GET_USER_BY_ID } from "@/sanity/lib/queries";
 import Loading from "./Loading";
-import { sanityFetch, SanityLive } from "@/sanity/lib/live";
+import { sanityFetch } from "@/sanity/lib/live";
 
 const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;

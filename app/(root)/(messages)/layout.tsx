@@ -2,7 +2,7 @@ import React, { FC, Suspense } from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Sidebar from "@/components/sidebar/Sidebar";
-import { unstable_after as after } from "next/server";
+import {after} from "next/server"
 import { writeClient } from "@/sanity/lib/write-client";
 import UserStatus from "@/components/userStatus/UserStatus";
 import { messagesLayoutPropTypes } from "@/lib/types";
@@ -10,7 +10,7 @@ import { messagesLayoutPropTypes } from "@/lib/types";
 const layout: FC<messagesLayoutPropTypes> = async ({ children }) => {
   const session = await auth();
 
-  // If user not found
+  // If user is not exist 
   if (!session?.isExist) redirect("/signIn");
 
   // Whenever user opens the website User's status is set to Online

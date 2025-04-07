@@ -1,7 +1,7 @@
 import React from "react";
+import { sanityFetch } from "@/sanity/lib/live";
 import ChatMessage from "../chatMessage/ChatMessage";
 import { MessageType } from "@/components/sidebar/sidebarChats/SidebarChats";
-import { sanityFetch, SanityLive } from "@/sanity/lib/live";
 import { GET_CHAT_MESSAGES_QUERY } from "@/sanity/lib/queries";
 import SentMessage from "@/components/util/SentMessage";
 
